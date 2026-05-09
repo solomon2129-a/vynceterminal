@@ -1,65 +1,89 @@
-import Image from "next/image";
+import { Hero } from "@/components/layout/Hero";
+import { VynceButton } from "@/components/ui/VynceButton";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex flex-col">
+      <Hero />
+      
+      {/* System Observation */}
+      <section className="py-40 px-12 md:px-24 flex justify-end bg-abyss border-t border-matte">
+        <div className="max-w-xl space-y-12">
+          <div className="flex items-center gap-4">
+            <span className="text-xs-technical text-ghost">OBS_LOG_001</span>
+            <div className="w-8 h-[1px] bg-matte" />
+          </div>
+          <p className="text-xl md:text-2xl leading-relaxed text-ash font-light tracking-wide italic">
+            "we_do_not_build_products // we_observe_drift. 
+            the_interface_is_a_living_tissue_responding_to_the_entropy_of_interaction."
+          </p>
+          <div className="pt-8">
+            <span className="text-[10px] font-mono text-dust/40 tracking-[0.3em] uppercase">
+              // archival_note_by_vynce_system
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Modular Previews */}
+      <section className="py-40 px-12 md:px-24 grid grid-cols-1 md:grid-cols-12 gap-12 max-w-[1600px] mx-auto w-full">
+        <div className="md:col-span-5 md:mt-24">
+          <PreviewFragment 
+            id="01"
+            title="SYSTEMS_LAB" 
+            tag="ACTIVE_TESTING" 
+            description="presence-reactive particle test // v0.3 unstable. exploring the friction between motion and machine logic."
+            href="/lab"
+            color="pulse"
+          />
+        </div>
+        <div className="md:col-span-5 md:col-start-8">
+          <PreviewFragment 
+            id="02"
+            title="THE_ARCHIVE" 
+            tag="RECOVERED_DATA" 
+            description="historical_signal_log. a collection of stable artifacts recovered from past digital operations."
+            href="/archive"
+            color="ghost"
+          />
+        </div>
+      </section>
+      
+      {/* Technical Footer */}
+      <section className="py-32 px-12 md:px-24 border-t border-matte flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
+        <div className="max-w-sm">
+          <span className="text-xs-technical text-dust/40 mb-4 block">Connection_State</span>
+          <p className="text-sm-archival">
+            lines_are_monitored. establish a secure transmission through our terminal interface.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        <VynceButton href="/contact" variant="secondary">INIT_HANDSHAKE</VynceButton>
+      </section>
     </div>
+  );
+}
+
+function PreviewFragment({ id, title, tag, description, href, color }: any) {
+  return (
+    <a href={href} className="group relative block glass-matte p-10 transition-all duration-700 hover:border-ash/20">
+      <div className="flex justify-between items-start mb-16">
+        <span className="text-[10px] font-mono text-dust/40 tracking-tighter">REF_{id}</span>
+        <span className={`text-[9px] uppercase tracking-[0.3em] px-2 py-1 border border-current opacity-40 group-hover:opacity-100 transition-opacity ${color === 'pulse' ? 'text-pulse' : 'text-ghost'}`}>
+          {tag}
+        </span>
+      </div>
+      
+      <h3 className="text-3xl font-bold tracking-[0.2em] text-ash mb-6 group-hover:text-pulse transition-colors duration-500">
+        {title}
+      </h3>
+      <p className="text-sm-archival mb-8 max-w-xs">
+        {description}
+      </p>
+      
+      <div className="flex items-center gap-4 text-xs-technical text-dust/20 group-hover:text-ash transition-colors">
+        <span>VIEW_FRAGMENT</span>
+        <div className="w-8 h-[1px] bg-current" />
+      </div>
+    </a>
   );
 }
