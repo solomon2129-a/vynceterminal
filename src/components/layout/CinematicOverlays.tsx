@@ -16,7 +16,7 @@ const DataLeak = () => {
           : Math.random() > 0.3 
             ? Math.floor(Math.random() * 100000).toString() 
             : Math.random().toString(2).substring(2, 10),
-        opacity: Math.random() * 0.12 + 0.03,
+        opacity: Math.random() * 0.2 + 0.15, // Increased base visibility
         duration: Math.random() * 5 + 3
       }));
       setFragments(newFragments);
@@ -30,13 +30,13 @@ const DataLeak = () => {
         <motion.div
           key={i}
           initial={{ opacity: 0 }}
-          animate={{ opacity: [f.opacity, f.opacity * 0.5, f.opacity] }}
+          animate={{ opacity: [f.opacity, f.opacity * 0.4, f.opacity] }}
           transition={{
             duration: f.duration,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute font-mono text-[7px] tracking-tighter text-ash/20"
+          className="absolute font-mono text-[9px] md:text-[10px] tracking-tighter text-ash"
           style={{
             left: `${f.x}%`,
             top: `${f.y}%`,
