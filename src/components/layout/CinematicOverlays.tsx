@@ -1,7 +1,44 @@
 'use client';
 
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+
+const DataLeak = () => {
+  const [fragments, setFragments] = useState<{ x: number, y: number, content: string, opacity: number }[]>([]);
+
+  useEffect(() => {
+    const generateFragments = () => {
+      const newFragments = [...Array(40)].map(() => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        content: Math.random() > 0.5 
+          ? Math.floor(Math.random() * 1000000).toString(16).toUpperCase()
+          : Math.random().toString(2).substring(2, 10),
+        opacity: Math.random() * 0.15 + 0.05
+      }));
+      setFragments(newFragments);
+    };
+    generateFragments();
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden select-none">
+      {fragments.map((f, i) => (
+        <div
+          key={i}
+          className="absolute font-mono text-[7px] tracking-tighter text-ash/20"
+          style={{
+            left: `${f.x}%`,
+            top: `${f.y}%`,
+            opacity: f.opacity
+          }}
+        >
+          {f.content}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const ParticleField = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -20,7 +57,7 @@ const ParticleField = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {[...Array(30)].map((_, i) => (
+      {[...Array(20)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-[1px] h-[1px] bg-dust/20"
@@ -35,13 +72,13 @@ const ParticleField = () => {
             opacity: [0.1, 0.3, 0.1],
           }}
           transition={{
-            duration: Math.random() * 20 + 20,
+            duration: Math.random() * 30 + 30,
             repeat: Infinity,
             ease: "linear"
           }}
           style={{
-            translateX: mousePosition.x * (i + 1) * 2,
-            translateY: mousePosition.y * (i + 1) * 2,
+            translateX: mousePosition.x * (i + 1) * 1.5,
+            translateY: mousePosition.y * (i + 1) * 1.5,
           }}
         />
       ))}
@@ -53,18 +90,19 @@ export const CinematicOverlays = () => {
   return (
     <>
       <div className="grain-overlay" aria-hidden="true" />
+      <DataLeak />
       <ParticleField />
       
-      {/* Subtle Scanline - more restrained */}
+      {/* Subtle Scanline */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-[1] opacity-[0.02]"
+        className="fixed inset-0 pointer-events-none z-[2] opacity-[0.015]"
         style={{
           background: "repeating-linear-gradient(0deg, transparent, transparent 2px, #B7B1A9 3px)"
         }}
       />
 
       {/* Atmospheric Vignette */}
-      <div className="fixed inset-0 pointer-events-none z-[2] bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(8,8,8,0.4)_100%)]" />
+      <div className="fixed inset-0 pointer-events-none z-[3] bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(8,8,8,0.5)_100%)]" />
     </>
   );
 };

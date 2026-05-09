@@ -38,14 +38,14 @@ body {
 /* Redesigned Utilities */
 @layer utilities {
   .text-xs-technical {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     font-family: var(--font-mono);
   }
 
   .text-sm-archival {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.05em;
     line-height: 1.6;
     color: var(--color-dust);
