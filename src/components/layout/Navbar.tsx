@@ -22,20 +22,20 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] px-12 py-10 pointer-events-none">
-      <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+    <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 py-6 md:py-10 pointer-events-none">
+      <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-8">
         <Link href="/" className="pointer-events-auto group">
           <div className="flex flex-col">
-            <span className="text-pulse font-bold tracking-[0.5em] text-sm group-hover:opacity-80 transition-opacity">
+            <span className="text-pulse font-bold tracking-[0.5em] text-xs md:text-sm group-hover:opacity-80 transition-opacity">
               VYNCE
             </span>
-            <span className="text-[9px] font-mono text-dust/40 tracking-[0.2em] mt-1">
+            <span className="text-[8px] md:text-[9px] font-mono text-dust/40 tracking-[0.2em] mt-1">
               SYS_ID: 0x82f_ARC
             </span>
           </div>
         </Link>
         
-        <div className="flex flex-wrap gap-x-12 gap-y-4 pointer-events-auto">
+        <div className="flex flex-wrap gap-x-8 md:gap-x-12 gap-y-3 pointer-events-auto">
           {navItems.map((item) => {
             const isActive = pathname === item.path;
             return (
@@ -43,7 +43,7 @@ export const Navbar = () => {
                 key={item.path}
                 href={item.path}
                 className={cn(
-                  "text-xs-technical transition-all duration-500 relative",
+                  "text-[9px] md:text-xs-technical transition-all duration-500 relative",
                   isActive ? "text-ash" : "text-dust/40 hover:text-ash"
                 )}
               >
@@ -51,7 +51,7 @@ export const Navbar = () => {
                 {isActive && (
                   <motion.div
                     layoutId="nav-dot"
-                    className="absolute -right-3 top-1/2 -translate-y-1/2 w-[2px] h-[2px] bg-pulse rounded-full"
+                    className="absolute -right-2 md:-right-3 top-1/2 -translate-y-1/2 w-[2px] h-[2px] bg-pulse rounded-full"
                   />
                 )}
               </Link>

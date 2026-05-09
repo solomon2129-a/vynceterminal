@@ -5,8 +5,8 @@ import { VynceButton } from '@/components/ui/VynceButton';
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-12 md:px-24 overflow-hidden pt-32">
-      <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20">
+    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 overflow-hidden pt-32 pb-20">
+      <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
         
         <div className="lg:col-span-7 flex flex-col justify-center">
           <motion.div
@@ -14,36 +14,36 @@ export const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
           >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-[1px] bg-pulse" />
-              <span className="text-xs-technical text-pulse animate-pulse">
+            <div className="flex items-center gap-4 mb-6 md:mb-8">
+              <div className="w-8 md:w-12 h-[1px] bg-pulse" />
+              <span className="text-[9px] md:text-xs-technical text-pulse animate-pulse">
                 signal_drift_detected
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold tracking-[0.2em] text-ash mb-12 uppercase leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-[0.2em] text-ash mb-8 md:mb-12 uppercase leading-tight">
               EXPERIMENTAL<br/>
               SYSTEMS_LAB
             </h1>
             
-            <p className="text-sm-archival max-w-md mb-16 italic">
-              recalibrating_motion_buffer // v0.42_stable<br/>
+            <p className="text-[11px] md:text-sm-archival max-w-md mb-12 md:mb-16 italic opacity-80">
+              recalibrating_motion_buffer // v0.42_stable<br className="hidden md:block" />
               observing fragments of interface entropy and atmospheric signal studies.
             </p>
 
-            <div className="flex gap-12">
+            <div className="flex flex-col sm:flex-row gap-6 md:gap-12">
               <VynceButton href="/archive">ENTER_ARCHIVE</VynceButton>
               <VynceButton href="/lab" variant="secondary">ACCESS_LAB</VynceButton>
             </div>
           </motion.div>
         </div>
 
-        <div className="lg:col-span-5 flex flex-col justify-end pb-20">
+        <div className="lg:col-span-5 flex flex-col justify-end lg:pb-20">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
             transition={{ delay: 1, duration: 2 }}
-            className="border-l border-matte pl-8 py-4"
+            className="border-l border-matte pl-6 md:pl-8 py-4 mt-12 lg:mt-0"
           >
             <div className="space-y-4 font-mono text-[9px] tracking-[0.2em] text-dust">
               <div className="flex justify-between">
