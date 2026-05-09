@@ -6,22 +6,31 @@ import { useEffect, useState } from 'react';
 const DataLeak = () => {
   const [fragments, setFragments] = useState<{ x: number, y: number, content: string, opacity: number, duration: number }[]>([]);
 
+  const generateValue = () => {
+    return Math.random() > 0.6 
+      ? Math.floor(Math.random() * 1000000).toString(16).toUpperCase()
+      : Math.random() > 0.3 
+        ? Math.floor(Math.random() * 100000).toString() 
+        : Math.random().toString(2).substring(2, 10);
+  };
+
   useEffect(() => {
-    const generateFragments = () => {
-      const newFragments = [...Array(100)].map(() => ({
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        content: Math.random() > 0.6 
-          ? Math.floor(Math.random() * 1000000).toString(16).toUpperCase()
-          : Math.random() > 0.3 
-            ? Math.floor(Math.random() * 100000).toString() 
-            : Math.random().toString(2).substring(2, 10),
-        opacity: Math.random() * 0.2 + 0.15, // Increased base visibility
-        duration: Math.random() * 5 + 3
-      }));
-      setFragments(newFragments);
-    };
-    generateFragments();
+    const initialFragments = [...Array(100)].map(() => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      content: generateValue(),
+      opacity: Math.random() * 0.12 + 0.09, // Reduced by 40% from previous 0.15-0.35
+      duration: Math.random() * 5 + 3
+    }));
+    setFragments(initialFragments);
+
+    const interval = setInterval(() => {
+      setFragments(prev => prev.map(f => 
+        Math.random() > 0.8 ? { ...f, content: generateValue() } : f
+      ));
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
