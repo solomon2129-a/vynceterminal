@@ -4,17 +4,20 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const DataLeak = () => {
-  const [fragments, setFragments] = useState<{ x: number, y: number, content: string, opacity: number }[]>([]);
+  const [fragments, setFragments] = useState<{ x: number, y: number, content: string, opacity: number, duration: number }[]>([]);
 
   useEffect(() => {
     const generateFragments = () => {
-      const newFragments = [...Array(40)].map(() => ({
+      const newFragments = [...Array(100)].map(() => ({
         x: Math.random() * 100,
         y: Math.random() * 100,
-        content: Math.random() > 0.5 
+        content: Math.random() > 0.6 
           ? Math.floor(Math.random() * 1000000).toString(16).toUpperCase()
-          : Math.random().toString(2).substring(2, 10),
-        opacity: Math.random() * 0.15 + 0.05
+          : Math.random() > 0.3 
+            ? Math.floor(Math.random() * 100000).toString() 
+            : Math.random().toString(2).substring(2, 10),
+        opacity: Math.random() * 0.12 + 0.03,
+        duration: Math.random() * 5 + 3
       }));
       setFragments(newFragments);
     };
@@ -24,17 +27,23 @@ const DataLeak = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden select-none">
       {fragments.map((f, i) => (
-        <div
+        <motion.div
           key={i}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [f.opacity, f.opacity * 0.5, f.opacity] }}
+          transition={{
+            duration: f.duration,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           className="absolute font-mono text-[7px] tracking-tighter text-ash/20"
           style={{
             left: `${f.x}%`,
             top: `${f.y}%`,
-            opacity: f.opacity
           }}
         >
           {f.content}
-        </div>
+        </motion.div>
       ))}
     </div>
   );
