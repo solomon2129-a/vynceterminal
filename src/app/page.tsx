@@ -13,7 +13,7 @@ export default function Home() {
             <span className="text-[9px] md:text-xs-technical text-ghost">OBS_LOG_001</span>
             <div className="w-6 md:w-8 h-[1px] bg-matte" />
           </div>
-          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-ash font-light tracking-wide italic opacity-90">
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed text-ash font-light tracking-wide italic opacity-80">
             "we_do_not_build_products // we_observe_drift. 
             the_interface_is_a_living_tissue_responding_to_the_entropy_of_interaction."
           </p>
@@ -73,10 +73,10 @@ function PreviewFragment({ id, title, tag, description, href, color }: any) {
         </span>
       </div>
       
-      <h3 className="text-2xl md:text-3xl font-bold tracking-[0.2em] text-ash mb-4 md:mb-6 group-hover:text-pulse transition-colors duration-500">
+      <h3 className="text-xl md:text-2xl font-bold tracking-[0.2em] text-ash mb-4 md:mb-6 group-hover:text-pulse transition-colors duration-500">
         {title}
       </h3>
-      <p className="text-[11px] md:text-sm-archival mb-6 md:mb-8 max-w-xs opacity-80">
+      <p className="text-[10px] md:text-sm-archival mb-6 md:mb-8 max-w-xs opacity-60">
         {description}
       </p>
       

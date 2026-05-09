@@ -21,12 +21,12 @@ export const Hero = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-[0.2em] text-ash mb-8 md:mb-12 uppercase leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.2em] text-ash mb-8 md:mb-12 uppercase leading-tight">
               EXPERIMENTAL<br/>
               SYSTEMS_LAB
             </h1>
             
-            <p className="text-[11px] md:text-sm-archival max-w-md mb-12 md:mb-16 italic opacity-80">
+            <p className="text-[10px] md:text-sm-archival max-w-md mb-12 md:mb-16 italic opacity-60">
               recalibrating_motion_buffer // v0.42_stable<br className="hidden md:block" />
               observing fragments of interface entropy and atmospheric signal studies.
             </p>
