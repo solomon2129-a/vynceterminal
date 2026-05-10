@@ -9,19 +9,19 @@ export default function Home() {
       <Hero />
 
       {/* System Observation */}
-      <section className="py-24 md:py-40 px-6 md:px-12 lg:px-24 flex justify-start md:justify-end bg-abyss border-t border-white/5">
+      <section className="py-24 md:py-48 px-6 md:px-12 lg:px-24 flex justify-start md:justify-end bg-abyss border-t border-white/10 text-pretty">
 
-        <div className="max-w-xl space-y-8 md:space-y-12">
-          <div className="flex items-center gap-4">
-            <span className="text-[9px] md:text-xs-technical text-dust/20">OBS_LOG_001</span>
-            <div className="w-6 md:w-8 h-[1px] bg-white/10" />
+        <div className="max-w-2xl space-y-10 md:space-y-16">
+          <div className="flex items-center gap-6">
+            <span className="text-xs-technical">OBS_LOG_001</span>
+            <div className="w-10 md:w-16 h-[0.5px] bg-white/20" />
           </div>
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed text-ash font-light tracking-wide italic opacity-80">
+          <p className="text-lg md:text-2xl lg:text-3xl leading-relaxed text-ash font-light tracking-wide italic opacity-70">
             "we_do_not_build_products // we_observe_drift. 
             the_interface_is_a_living_tissue_responding_to_the_entropy_of_interaction."
           </p>
-          <div className="pt-4 md:pt-8">
-            <span className="text-[9px] md:text-[10px] font-mono text-dust/40 tracking-[0.3em] uppercase">
+          <div className="pt-6 md:pt-10">
+            <span className="text-[10px] md:text-[12px] font-mono text-dust/30 tracking-[0.4em] uppercase">
               // archival_note_by_vynce_system
             </span>
           </div>
@@ -29,8 +29,8 @@ export default function Home() {
       </section>
 
       {/* Modular Previews */}
-      <section className="py-24 md:py-40 px-6 md:px-12 lg:px-24 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 max-w-[1600px] mx-auto w-full">
-        <div className="md:col-span-6 lg:col-span-5 md:mt-24">
+      <section className="py-32 md:py-56 px-6 md:px-12 lg:px-24 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 max-w-[1600px] mx-auto w-full">
+        <div className="md:col-span-6 lg:col-span-5 md:mt-32">
           <PreviewFragment 
             id="01"
             title="SYSTEMS_LAB" 
@@ -53,10 +53,10 @@ export default function Home() {
       </section>
       
       {/* Technical Footer */}
-      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-matte flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
-        <div className="max-w-sm">
-          <span className="text-[9px] md:text-xs-technical text-dust/40 mb-4 block">Connection_State</span>
-          <p className="text-[11px] md:text-sm-archival opacity-70">
+      <section className="py-24 md:py-48 px-6 md:px-12 lg:px-24 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
+        <div className="max-w-md">
+          <span className="text-xs-technical mb-6 block opacity-40">Connection_State</span>
+          <p className="text-sm-archival opacity-60">
             lines_are_monitored. establish a secure transmission through our terminal interface.
           </p>
         </div>
@@ -68,24 +68,24 @@ export default function Home() {
 
 function PreviewFragment({ id, title, tag, description, href, color }: any) {
   return (
-    <a href={href} className="group relative block glass-matte p-6 md:p-10 transition-all duration-700 border-white/5 hover:border-ice/20">
-      <div className="flex justify-between items-start mb-12 md:mb-16">
-        <span className="text-[9px] md:text-[10px] font-mono text-dust/30 tracking-tighter">REF_{id}</span>
-        <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.3em] px-2 py-1 border border-current opacity-20 group-hover:opacity-100 transition-opacity ${color === 'ice' ? 'text-ice' : 'text-ghost'}`}>
+    <a href={href} className="group relative block glass-matte p-10 md:p-14 transition-all duration-1000 border-white/10 hover:border-ice/30">
+      <div className="flex justify-between items-start mb-14 md:mb-20">
+        <span className="text-[11px] md:text-[13px] font-mono text-dust/40 tracking-tighter">REF_{id}</span>
+        <span className={`text-[10px] md:text-[11px] uppercase tracking-[0.4em] px-3 py-1 border border-current opacity-30 group-hover:opacity-100 transition-opacity ${color === 'ice' ? 'text-ice' : 'text-ghost'}`}>
           {tag}
         </span>
       </div>
       
-      <h3 className="text-xl md:text-2xl font-bold tracking-[0.2em] text-ash mb-4 md:mb-6 group-hover:text-ice transition-colors duration-500">
+      <h3 className="text-2xl md:text-4xl font-bold tracking-tighter text-ash mb-6 md:mb-10 group-hover:text-ice transition-colors duration-700 leading-none uppercase">
         {title}
       </h3>
-      <p className="text-[10px] md:text-sm-archival mb-6 md:mb-8 max-w-xs opacity-50">
+      <p className="text-sm-archival mb-8 md:mb-12 max-w-sm opacity-50">
         {description}
       </p>
       
-      <div className="flex items-center gap-4 text-[9px] md:text-xs-technical text-dust/20 group-hover:text-ash transition-colors">
-        <span>VIEW_FRAGMENT</span>
-        <div className="w-6 md:w-8 h-[1px] bg-current" />
+      <div className="flex items-center gap-6 text-xs-technical opacity-20 group-hover:opacity-80 group-hover:text-ash transition-all duration-700">
+        <span className="tracking-[0.8em]">VIEW_FRAGMENT</span>
+        <div className="w-10 md:w-16 h-[0.5px] bg-current" />
       </div>
     </a>
   );

@@ -49,41 +49,41 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-4 mb-8 md:mb-12">
-              <GlitchText text="SYSTEM_LINK_082F" className="text-[8px] font-mono text-crimson tracking-[0.5em] uppercase opacity-60" />
-              <div className="w-10 h-[0.5px] bg-white/5" />
+            <div className="flex items-center gap-4 mb-10 md:mb-14">
+              <GlitchText text="SYSTEM_LINK_082F" className="text-[10px] md:text-[11px] font-mono text-crimson tracking-[0.5em] uppercase opacity-70" />
+              <div className="w-12 h-[0.5px] bg-white/10" />
             </div>
             
-            <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-ash mb-10 md:mb-14 uppercase leading-[0.85] flex flex-col">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter text-ash mb-12 md:mb-16 uppercase leading-[0.85] flex flex-col">
               <span className="text-white/10">EXPERIMENTAL</span>
               <span>SYSTEMS_LAB</span>
             </h1>
             
-            <p className="text-[10px] md:text-[11px] max-w-md mb-12 md:mb-20 opacity-30 leading-relaxed font-mono tracking-wide">
+            <p className="text-[12px] md:text-[14px] max-w-md mb-16 md:mb-24 opacity-40 leading-relaxed font-mono tracking-wide">
               [TRANSMISSION_LOG] ARCHIVING FRAGMENTS OF DIGITAL ARCHITECTURE. 
               CONSTRUCTING WORLDS AT THE INTERSECTION OF MOTION, IDENTITY, AND ATMOSPHERIC INTERFACES.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-8 md:gap-16">
+            <div className="flex flex-col sm:flex-row gap-10 md:gap-20">
               <VynceButton href="/archive">ENTER_ARCHIVE</VynceButton>
               <VynceButton href="/lab" variant="secondary">SYS_PROTOCOL</VynceButton>
             </div>
           </motion.div>
         </div>
 
-        <div className="lg:col-span-4 flex flex-col justify-end lg:pb-24 lg:items-end">
+        <div className="lg:col-span-4 flex flex-col justify-end lg:pb-24 lg:items-end mt-20 lg:mt-0">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 2 }}
-            className="border-l lg:border-l-0 lg:border-r border-white/5 pl-8 lg:pl-0 lg:pr-8 py-4"
+            className="border-l lg:border-l-0 lg:border-r border-white/10 pl-8 lg:pl-0 lg:pr-10 py-6"
           >
-            <div className="space-y-6 lg:text-right">
+            <div className="space-y-8 lg:text-right">
               <SignalData label="ARCHIVE_NODE" value="8244.00" />
               <SignalData label="SYNC_LATENCY" value="0.0082" />
               <SignalData label="LOC_COORDS" value="51.5074, 0.1278" />
-              <div className="w-full h-[0.5px] bg-white/5 mt-10" />
-              <p className="leading-relaxed opacity-20 italic text-[8px] font-mono uppercase tracking-widest">
+              <div className="w-full h-[0.5px] bg-white/10 mt-12" />
+              <p className="leading-relaxed opacity-30 italic text-[10px] md:text-[11px] font-mono uppercase tracking-[0.4em]">
                 "EVERY_INTERFACE_IS_A_WORLD"
               </p>
             </div>

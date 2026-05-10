@@ -40,29 +40,31 @@ body {
 /* Redesigned Utilities */
 @layer utilities {
   .text-xs-technical {
-    font-size: 8px;
-    letter-spacing: 0.5em;
+    font-size: 9px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     font-family: var(--font-mono);
     color: var(--color-dust);
     opacity: 0.4;
+    @apply md:text-[10px] md:tracking-[0.5em];
   }
 
   .text-sm-archival {
-    font-size: 11px;
-    letter-spacing: 0.04em;
+    font-size: 13px;
+    letter-spacing: 0.03em;
     line-height: 1.6;
     color: var(--color-dust);
+    @apply md:text-[14px] md:tracking-[0.04em] md:leading-[1.7];
   }
 
   .border-matte {
-    border: 0.5px solid rgba(229, 231, 235, 0.05);
+    border: 0.5px solid rgba(229, 231, 235, 0.08);
   }
 
   .glass-matte {
-    background-color: rgba(5, 5, 5, 0.8);
-    backdrop-filter: blur(16px);
-    border: 0.5px solid rgba(229, 231, 235, 0.03);
+    background-color: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(229, 231, 235, 0.05);
   }
 
   .grain-overlay {
