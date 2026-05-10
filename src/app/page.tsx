@@ -1,17 +1,20 @@
+'use client';
+
 import { Hero } from "@/components/layout/Hero";
 import { VynceButton } from "@/components/ui/VynceButton";
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-abyss">
       <Hero />
-      
+
       {/* System Observation */}
-      <section className="py-24 md:py-40 px-6 md:px-12 lg:px-24 flex justify-start md:justify-end bg-abyss border-t border-matte">
+      <section className="py-24 md:py-40 px-6 md:px-12 lg:px-24 flex justify-start md:justify-end bg-abyss border-t border-white/5">
+
         <div className="max-w-xl space-y-8 md:space-y-12">
           <div className="flex items-center gap-4">
-            <span className="text-[9px] md:text-xs-technical text-ghost">OBS_LOG_001</span>
-            <div className="w-6 md:w-8 h-[1px] bg-matte" />
+            <span className="text-[9px] md:text-xs-technical text-dust/20">OBS_LOG_001</span>
+            <div className="w-6 md:w-8 h-[1px] bg-white/10" />
           </div>
           <p className="text-base md:text-lg lg:text-xl leading-relaxed text-ash font-light tracking-wide italic opacity-80">
             "we_do_not_build_products // we_observe_drift. 
@@ -34,7 +37,7 @@ export default function Home() {
             tag="ACTIVE_TESTING" 
             description="presence-reactive particle test // v0.3 unstable. exploring the friction between motion and machine logic."
             href="/lab"
-            color="pulse"
+            color="ice"
           />
         </div>
         <div className="md:col-span-6 lg:col-span-5 md:col-start-7 lg:col-start-8">
@@ -65,18 +68,18 @@ export default function Home() {
 
 function PreviewFragment({ id, title, tag, description, href, color }: any) {
   return (
-    <a href={href} className="group relative block glass-matte p-6 md:p-10 transition-all duration-700 hover:border-ash/20">
+    <a href={href} className="group relative block glass-matte p-6 md:p-10 transition-all duration-700 border-white/5 hover:border-ice/20">
       <div className="flex justify-between items-start mb-12 md:mb-16">
-        <span className="text-[9px] md:text-[10px] font-mono text-dust/40 tracking-tighter">REF_{id}</span>
-        <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.3em] px-2 py-1 border border-current opacity-40 group-hover:opacity-100 transition-opacity ${color === 'pulse' ? 'text-pulse' : 'text-ghost'}`}>
+        <span className="text-[9px] md:text-[10px] font-mono text-dust/30 tracking-tighter">REF_{id}</span>
+        <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.3em] px-2 py-1 border border-current opacity-20 group-hover:opacity-100 transition-opacity ${color === 'ice' ? 'text-ice' : 'text-ghost'}`}>
           {tag}
         </span>
       </div>
       
-      <h3 className="text-xl md:text-2xl font-bold tracking-[0.2em] text-ash mb-4 md:mb-6 group-hover:text-pulse transition-colors duration-500">
+      <h3 className="text-xl md:text-2xl font-bold tracking-[0.2em] text-ash mb-4 md:mb-6 group-hover:text-ice transition-colors duration-500">
         {title}
       </h3>
-      <p className="text-[10px] md:text-sm-archival mb-6 md:mb-8 max-w-xs opacity-60">
+      <p className="text-[10px] md:text-sm-archival mb-6 md:mb-8 max-w-xs opacity-50">
         {description}
       </p>
       

@@ -2,115 +2,83 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter, Archive as ArchiveIcon, Calendar, Tag, ChevronRight } from 'lucide-react';
-
-const categories = ['ALL', 'MOTION', 'SYSTEMS', 'VISUALS', 'RESEARCH'];
-
-const artifacts = [
-  { id: 'ART_001', title: 'KINETIC_SCULPTURE', category: 'MOTION', date: '2025.04.12', ver: 'v1.2' },
-  { id: 'ART_002', title: 'NEURAL_GRID_SYS', category: 'SYSTEMS', date: '2025.03.20', ver: 'v2.0' },
-  { id: 'ART_003', title: 'FROST_INTERFACE', category: 'VISUALS', date: '2025.02.15', ver: 'v0.9' },
-  { id: 'ART_004', title: 'ENTROPY_DATA_VIZ', category: 'RESEARCH', date: '2025.01.05', ver: 'v1.0' },
-  { id: 'ART_005', title: 'REACTIVE_BUFFER', category: 'SYSTEMS', date: '2024.12.18', ver: 'v3.1' },
-  { id: 'ART_006', title: 'SIGNAL_GHOSTING', category: 'MOTION', date: '2024.11.30', ver: 'v1.5' },
-];
+import { archiveEntries, ArchiveEntry } from '@/data/archive';
+import { ArchiveCard } from '@/components/archive/ArchiveCard';
+import { ProjectModal } from '@/components/archive/ProjectModal';
 
 export default function ArchivePage() {
-  const [activeFilter, setActiveFilter] = useState('ALL');
+  const [selectedEntry, setSelectedEntry] = useState<ArchiveEntry | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredArtifacts = activeFilter === 'ALL' 
-    ? artifacts 
-    : artifacts.filter(a => a.category === activeFilter);
+  const handleEntryClick = (entry: ArchiveEntry) => {
+    setSelectedEntry(entry);
+    setIsModalOpen(true);
+  };
 
   return (
-    <div className="min-h-screen pt-32 md:pt-48 pb-24 md:pb-40 px-6 md:px-12 lg:px-24">
+    <div className="min-h-screen pt-32 md:pt-48 pb-24 md:pb-40 px-6 md:px-12 lg:px-24 bg-abyss">
       <div className="max-w-[1400px] mx-auto">
-        <header className="mb-16 md:mb-24 flex flex-col lg:flex-row lg:items-end justify-between gap-8 md:gap-12">
+        <header className="mb-24 md:mb-32">
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
           >
-            <div className="flex items-center gap-4 mb-4 md:mb-6">
-              <span className="text-[9px] md:text-xs-technical text-ghost">LOG_ARCHIVE_82f</span>
-              <div className="w-8 md:w-12 h-[1px] bg-matte" />
+            <div className="flex items-center gap-6 mb-8">
+              <span className="text-xs-technical text-ice/60">SYS_ARCHIVE_NODE_82F</span>
+              <div className="w-12 h-[1px] bg-white/5" />
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-[0.2em] text-ash uppercase">THE_ARCHIVE</h1>
+            <h1 className="text-5xl md:text-8xl font-bold tracking-[0.1em] text-ash uppercase leading-tight mb-8">
+              OPERATIONAL<br/>
+              ARCHIVE
+            </h1>
+            <p className="text-sm-archival max-w-2xl opacity-40 font-mono">
+              A CLASSIFIED COLLECTION OF REAL DIGITAL ENVIRONMENTS AND CREATIVE SYSTEMS DEPLOYED ACROSS THE NETWORK. EACH FRAGMENT REPRESENTS A COMPLETE ARCHITECTURAL BUILD: BRANDING, UI/UX, AND ATMOSPHERIC IDENTITY.
+            </p>
           </motion.div>
-
-          <div className="flex flex-wrap gap-2 md:gap-4 border-b border-matte pb-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`text-[8px] md:text-[9px] font-mono tracking-[0.2em] md:tracking-[0.3em] px-3 md:px-4 py-2 transition-all duration-500 ${
-                  activeFilter === cat 
-                  ? 'text-pulse' 
-                  : 'text-dust/30 hover:text-ash'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-          <AnimatePresence mode="popLayout">
-            {filteredArtifacts.map((artifact) => (
-              <ArtifactFragment key={artifact.id} artifact={artifact} />
-            ))}
-          </AnimatePresence>
+        {/* Technical Filter Bar (Simplified/Minimal) */}
+        <div className="mb-16 flex items-center justify-between border-b border-white/5 pb-8">
+          <div className="flex gap-12">
+             <div className="flex flex-col gap-1">
+                <span className="text-[8px] font-mono text-dust/20 uppercase tracking-[0.2em]">Active_Nodes</span>
+                <span className="text-[10px] font-mono text-ice tracking-widest">{archiveEntries.length.toString().padStart(2, '0')}</span>
+             </div>
+             <div className="flex flex-col gap-1">
+                <span className="text-[8px] font-mono text-dust/20 uppercase tracking-[0.2em]">Sync_Status</span>
+                <span className="text-[10px] font-mono text-ash tracking-widest">ENCRYPTED</span>
+             </div>
+          </div>
+          <div className="hidden md:block">
+             <span className="text-[9px] font-mono text-dust/20 tracking-[0.5em] uppercase">VERIFYING_INTEGRITY...</span>
+          </div>
         </div>
 
-        {filteredArtifacts.length === 0 && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="py-24 md:py-40 text-center border-matte"
-          >
-            <span className="text-[9px] md:text-xs-technical text-dust/20 uppercase tracking-[0.3em] md:tracking-[0.5em]">no_signal_recovered</span>
-          </motion.div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+          {archiveEntries.map((entry) => (
+            <ArchiveCard 
+              key={entry.id} 
+              entry={entry} 
+              onClick={() => handleEntryClick(entry)} 
+            />
+          ))}
+        </div>
+
+        {/* Project Modal */}
+        <ProjectModal 
+          entry={selectedEntry} 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      </div>
+
+      {/* Atmospheric Background Label */}
+      <div className="fixed right-10 top-1/2 -translate-y-1/2 hidden lg:block opacity-5 pointer-events-none">
+        <span className="text-[150px] font-bold text-white tracking-tighter uppercase [writing-mode:vertical-lr] rotate-180">
+          ARCHIVE
+        </span>
       </div>
     </div>
-  );
-}
-
-function ArtifactFragment({ artifact }: any) {
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="group glass-matte p-6 md:p-10 relative overflow-hidden flex flex-col h-64 md:h-72 justify-between hover:border-ash/20 transition-all duration-700 cursor-pointer"
-    >
-      <div className="flex justify-between items-start">
-        <span className="text-[9px] md:text-[10px] font-mono text-pulse/40 tracking-tighter">{artifact.id}</span>
-        <span className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.3em] text-dust/30 group-hover:text-ash transition-colors">{artifact.category}</span>
-      </div>
-
-      <div>
-        <h3 className="text-xl md:text-2xl font-bold tracking-[0.1em] text-ash mb-3 md:mb-4 group-hover:text-pulse transition-colors uppercase">
-          {artifact.title}
-        </h3>
-        <div className="flex items-center gap-4 md:gap-6 text-[8px] md:text-[9px] text-dust/30 font-mono tracking-widest">
-          <div className="flex items-center gap-1.5 md:gap-2">
-            <Calendar className="w-3 h-3" />
-            <span>{artifact.date}</span>
-          </div>
-          <span>VER: {artifact.ver}</span>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-2 text-[9px] md:text-[10px] text-dust/20 group-hover:text-ash transition-colors pt-3 md:pt-4 border-t border-matte mt-6 md:mt-8">
-        <span>LOAD_FRAGMENT</span>
-        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-      </div>
-
-      {/* Atmospheric drift effect inside card */}
-      <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-pulse/5 blur-[40px] md:blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-    </motion.div>
   );
 }

@@ -34,8 +34,8 @@ export default function ContactPage() {
           className="lg:col-span-7"
         >
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-xs-technical text-pulse">HANDSHAKE_INITIATED // TRANSMISSION_OPEN</span>
-            <div className="w-12 h-[1px] bg-matte" />
+            <span className="text-xs-technical text-ice">HANDSHAKE_INITIATED // TRANSMISSION_OPEN</span>
+            <div className="w-12 h-[1px] bg-white/10" />
           </div>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.2em] text-ash mb-12 uppercase leading-[0.9]">
@@ -90,7 +90,7 @@ export default function ContactPage() {
           />
           
           <div className="pt-12 md:pt-20">
-            <div className="glass-matte p-10 border-matte flex justify-between items-end group transition-all duration-700 hover:border-ash/20">
+            <div className="glass-matte p-10 border-white/5 flex justify-between items-end group transition-all duration-700 hover:border-ice/20">
               <div className="space-y-6">
                 <span className="text-[9px] font-mono text-dust/20 tracking-[0.4em] uppercase block">Operations_Node</span>
                 <div>
@@ -98,7 +98,7 @@ export default function ContactPage() {
                    <p className="text-[9px] font-mono text-dust/40 tracking-[0.2em]">COORD: 51.5074° N, 0.1278° W</p>
                 </div>
               </div>
-              <Cpu className="w-6 h-6 text-dust/10 group-hover:text-pulse transition-colors duration-1000 animate-pulse" />
+              <Cpu className="w-6 h-6 text-dust/10 group-hover:text-ice transition-colors duration-1000 animate-pulse" />
             </div>
           </div>
         </motion.div>
@@ -119,11 +119,11 @@ function TransmissionLink({ icon, label, value, href, metadata }: any) {
   return (
     <a 
       href={href}
-      className="group flex flex-col p-8 glass-matte hover:border-ash/20 transition-all duration-700 relative overflow-hidden"
+      className="group flex flex-col p-8 glass-matte border-white/5 hover:border-ice/20 transition-all duration-700 relative overflow-hidden"
     >
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-6">
-          <div className="text-dust/20 group-hover:text-pulse transition-colors duration-500">
+          <div className="text-dust/20 group-hover:text-ice transition-colors duration-500">
             {icon}
           </div>
           <span className="text-[9px] font-mono uppercase tracking-[0.4em] text-dust/30 group-hover:text-ash transition-colors">
@@ -139,15 +139,15 @@ function TransmissionLink({ icon, label, value, href, metadata }: any) {
         </p>
       </div>
 
-      <div className="flex justify-between items-center pt-4 border-t border-matte/50">
+      <div className="flex justify-between items-center pt-4 border-t border-white/5">
         <span className="text-[8px] font-mono text-dust/20 tracking-widest uppercase group-hover:text-dust/40 transition-colors">
           {metadata}
         </span>
-        <div className="w-1.5 h-1.5 rounded-full bg-matte group-hover:bg-pulse transition-colors" />
+        <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-ice transition-colors" />
       </div>
 
       {/* Decorative vertical pulse line */}
-      <div className="absolute top-0 right-0 w-[1px] h-0 bg-pulse group-hover:h-full transition-all duration-1000" />
+      <div className="absolute top-0 right-0 w-[1px] h-0 bg-ice group-hover:h-full transition-all duration-1000" />
     </a>
   );
 }

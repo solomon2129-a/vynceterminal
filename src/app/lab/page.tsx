@@ -15,11 +15,11 @@ export default function LabPage() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-4 mb-4 md:mb-6">
-              <span className="text-[9px] md:text-xs-technical text-pulse">PHASE_01 // INSTABILITY_TESTS</span>
-              <div className="w-8 md:w-12 h-[1px] bg-matte" />
+              <span className="text-[9px] md:text-xs-technical text-ice">PHASE_01 // INSTABILITY_TESTS</span>
+              <div className="w-8 md:w-12 h-[1px] bg-white/10" />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold tracking-[0.2em] text-ash mb-6 md:mb-8 uppercase">THE_LAB</h1>
-            <p className="text-[11px] md:text-sm-archival max-w-lg italic opacity-80">
+            <p className="text-[11px] md:text-sm-archival max-w-lg italic opacity-50">
               a controlled environment for visual breakdown and system reconstruction. 
               observing the friction between machine logic and human signal drift.
             </p>
@@ -35,7 +35,7 @@ export default function LabPage() {
                 title="MOTION_ENTROPY" 
                 status="STABLE" 
                 icon={<Zap className="w-3 h-3" />}
-                color="pulse"
+                color="ice"
               />
               <LabModule 
                 id="0x02" 
@@ -61,7 +61,7 @@ export default function LabPage() {
             <div className="border-l border-matte pl-6 md:pl-12 py-4 md:py-8">
               <div className="flex justify-between items-center mb-8 md:mb-12">
                 <span className="text-[9px] md:text-xs-technical text-dust/40">SYSTEM_FEED</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-pulse animate-pulse" />
+                <div className="w-1.5 h-1.5 rounded-full bg-ice animate-pulse" />
               </div>
               
               <div className="space-y-4 md:space-y-6 font-mono text-[8px] md:text-[9px] tracking-[0.2em] text-dust/60">
@@ -97,18 +97,18 @@ function LabModule({ id, title, status, icon, color }: any) {
   return (
     <motion.div 
       whileHover={{ y: -2 }}
-      className="group relative glass-matte p-6 md:p-10 border-matte hover:border-ash/20 transition-all duration-700 cursor-crosshair"
+      className="group relative glass-matte p-6 md:p-10 border-white/5 hover:border-ice/20 transition-all duration-700 cursor-crosshair"
     >
       <div className="flex justify-between items-start mb-12 md:mb-20">
         <span className="text-[9px] md:text-[10px] font-mono text-dust/40 tracking-tighter">{id}</span>
-        <div className={`p-1.5 md:p-2 rounded-full border border-current opacity-20 group-hover:opacity-100 transition-all duration-500 ${color === 'pulse' ? 'text-pulse' : 'text-ghost'}`}>
+        <div className={`p-1.5 md:p-2 rounded-full border border-current opacity-20 group-hover:opacity-100 transition-all duration-500 ${color === 'ice' ? 'text-ice' : 'text-ghost'}`}>
           {icon}
         </div>
       </div>
       
       <h3 className="text-xl md:text-2xl font-bold tracking-[0.2em] text-ash mb-3 md:mb-4 uppercase">{title}</h3>
       <div className="flex items-center gap-3 md:gap-4">
-        <div className={`w-1 h-1 rounded-full animate-pulse bg-current ${color === 'pulse' ? 'text-pulse' : 'text-ghost'}`} />
+        <div className={`w-1 h-1 rounded-full animate-pulse bg-current ${color === 'ice' ? 'text-ice' : 'text-ghost'}`} />
         <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] text-dust/60">{status}</span>
       </div>
 

@@ -49,11 +49,11 @@ export default function BTSPage() {
             animate={{ opacity: 1 }}
           >
             <div className="flex items-center gap-4 mb-4 md:mb-6">
-              <span className="text-[9px] md:text-xs-technical text-pulse animate-pulse uppercase">RAW_THOUGHT_BUFFER // UNFILTERED</span>
-              <div className="w-8 md:w-12 h-[1px] bg-matte" />
+              <span className="text-[9px] md:text-xs-technical text-ice animate-pulse uppercase">RAW_THOUGHT_BUFFER // UNFILTERED</span>
+              <div className="w-8 md:w-12 h-[1px] bg-white/10" />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold tracking-[0.2em] text-ash mb-6 md:mb-8 uppercase">THE_PROCESS</h1>
-            <p className="text-[11px] md:text-sm-archival max-w-lg italic opacity-80">
+            <p className="text-[11px] md:text-sm-archival max-w-lg italic opacity-50">
               unfiltered_fragments_from_the_lab. this_is_the_residue_of_the_vynce_system.
             </p>
           </motion.div>
@@ -75,10 +75,11 @@ function ThoughtFragment({ fragment, index }: any) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 1 }}
-      className="break-inside-avoid glass-matte p-6 md:p-10 group hover:border-ash/20 transition-all duration-700"
+      className="break-inside-avoid glass-matte p-6 md:p-10 group hover:border-ice/20 transition-all duration-700"
     >
       <div className="flex justify-between items-center mb-8 md:mb-10">
-        <span className="text-[8px] md:text-[9px] font-mono uppercase tracking-[0.2em] md:tracking-[0.3em] text-dust/30 group-hover:text-pulse transition-colors">
+        <span className="text-[8px] md:text-[9px] font-mono uppercase tracking-[0.2em] md:tracking-[0.3em] text-dust/30 group-hover:text-ice transition-colors">
+
           {fragment.tag}
         </span>
         <Share2 className="w-3 h-3 text-dust/20 group-hover:text-ash transition-colors" />
@@ -86,14 +87,14 @@ function ThoughtFragment({ fragment, index }: any) {
 
       <div className="space-y-4 md:space-y-6">
         {fragment.title && <h3 className="text-ash font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">{fragment.title}</h3>}
-        <p className={`text-[12px] md:text-sm-archival leading-relaxed ${fragment.type === 'insight' ? 'text-ash italic' : 'text-dust'} opacity-90`}>
+        <p className={`text-[12px] md:text-sm-archival leading-relaxed ${fragment.type === 'insight' ? 'text-ash italic' : 'text-dust'} opacity-70`}>
           {fragment.content}
         </p>
       </div>
 
-      <div className="mt-8 md:mt-12 pt-4 border-t border-matte flex justify-between items-center">
+      <div className="mt-8 md:mt-12 pt-4 border-t border-white/5 flex justify-between items-center">
         <span className="text-[7px] md:text-[8px] font-mono text-dust/20 tracking-widest uppercase">system_residue</span>
-        <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-matte group-hover:bg-pulse transition-colors" />
+        <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-white/10 group-hover:bg-ice transition-colors" />
       </div>
     </motion.div>
   );

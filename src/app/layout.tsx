@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#080808",
+  themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
 };
@@ -35,7 +35,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-abyss text-ash selection:bg-pulse selection:text-abyss">
+      <body className="min-h-full flex flex-col bg-abyss text-ash selection:bg-ice selection:text-abyss">
         <CinematicOverlays />
         <Navbar />
         <main className="relative z-10 flex-grow">

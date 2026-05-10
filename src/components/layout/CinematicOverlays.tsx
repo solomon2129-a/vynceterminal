@@ -3,6 +3,12 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+const useHasMounted = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted;
+};
+
 const DataLeak = () => {
   const [fragments, setFragments] = useState<{ x: number, y: number, content: string, opacity: number, duration: number }[]>([]);
 
@@ -15,20 +21,20 @@ const DataLeak = () => {
   };
 
   useEffect(() => {
-    const initialFragments = [...Array(100)].map(() => ({
+    const initialFragments = [...Array(40)].map(() => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
       content: generateValue(),
-      opacity: Math.random() * 0.12 + 0.09, // Reduced by 40% from previous 0.15-0.35
+      opacity: Math.random() * 0.08 + 0.04,
       duration: Math.random() * 5 + 3
     }));
     setFragments(initialFragments);
 
     const interval = setInterval(() => {
       setFragments(prev => prev.map(f => 
-        Math.random() > 0.8 ? { ...f, content: generateValue() } : f
+        Math.random() > 0.9 ? { ...f, content: generateValue() } : f
       ));
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -45,7 +51,7 @@ const DataLeak = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute font-mono text-[9px] md:text-[10px] tracking-tighter text-ash"
+          className="absolute font-mono text-[9px] md:text-[10px] tracking-tighter text-ash/30"
           style={{
             left: `${f.x}%`,
             top: `${f.y}%`,
@@ -60,8 +66,19 @@ const DataLeak = () => {
 
 const ParticleField = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState<{ x: string, y: string, opacity: number, duration: number, targetX: string, targetY: string }[]>([]);
 
   useEffect(() => {
+    const initialParticles = [...Array(15)].map(() => ({
+      x: Math.random() * 100 + '%',
+      y: Math.random() * 100 + '%',
+      opacity: Math.random() * 0.3,
+      duration: Math.random() * 40 + 40,
+      targetX: Math.random() * 100 + '%',
+      targetY: Math.random() * 100 + '%'
+    }));
+    setParticles(initialParticles);
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) - 0.5,
@@ -75,28 +92,28 @@ const ParticleField = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {[...Array(20)].map((_, i) => (
+      {particles.map((p, i) => (
         <motion.div
           key={i}
-          className="absolute w-[1px] h-[1px] bg-dust/20"
+          className="absolute w-[1px] h-[1px] bg-white/10"
           initial={{ 
-            x: Math.random() * 100 + '%', 
-            y: Math.random() * 100 + '%',
-            opacity: Math.random() * 0.5 
+            x: p.x, 
+            y: p.y,
+            opacity: p.opacity 
           }}
           animate={{
-            x: [null, `${Math.random() * 100}%`],
-            y: [null, `${Math.random() * 100}%`],
-            opacity: [0.1, 0.3, 0.1],
+            x: [p.x, p.targetX, p.x],
+            y: [p.y, p.targetY, p.y],
+            opacity: [p.opacity, p.opacity * 2, p.opacity],
           }}
           transition={{
-            duration: Math.random() * 30 + 30,
+            duration: p.duration,
             repeat: Infinity,
             ease: "linear"
           }}
           style={{
-            translateX: mousePosition.x * (i + 1) * 1.5,
-            translateY: mousePosition.y * (i + 1) * 1.5,
+            translateX: mousePosition.x * (i + 1) * 2,
+            translateY: mousePosition.y * (i + 1) * 2,
           }}
         />
       ))}
@@ -105,6 +122,10 @@ const ParticleField = () => {
 };
 
 export const CinematicOverlays = () => {
+  const mounted = useHasMounted();
+
+  if (!mounted) return <div className="grain-overlay" aria-hidden="true" />;
+
   return (
     <>
       <div className="grain-overlay" aria-hidden="true" />
@@ -113,14 +134,14 @@ export const CinematicOverlays = () => {
       
       {/* Subtle Scanline */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-[2] opacity-[0.015]"
+        className="fixed inset-0 pointer-events-none z-[2] opacity-[0.01]"
         style={{
-          background: "repeating-linear-gradient(0deg, transparent, transparent 2px, #B7B1A9 3px)"
+          background: "repeating-linear-gradient(0deg, transparent, transparent 2px, #E5E7EB 3px)"
         }}
       />
 
       {/* Atmospheric Vignette */}
-      <div className="fixed inset-0 pointer-events-none z-[3] bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(8,8,8,0.5)_100%)]" />
+      <div className="fixed inset-0 pointer-events-none z-[3] bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(5,5,5,0.6)_100%)]" />
     </>
   );
 };

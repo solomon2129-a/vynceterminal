@@ -63,17 +63,17 @@ export const Navbar = () => {
           {/* Logo / System ID */}
           <Link href="/" className="pointer-events-auto group">
             <div className="flex flex-col">
-              <span className="text-pulse font-bold tracking-[0.5em] text-xs md:text-sm group-hover:opacity-80 transition-opacity">
+              <span className="text-ice font-bold tracking-[0.5em] text-xs md:text-sm group-hover:opacity-80 transition-opacity">
                 VYNCE
               </span>
-              <span className="text-[8px] md:text-[9px] font-mono text-dust/40 tracking-[0.2em] mt-1">
-                SYS_ID: 0x82f_ARC
+              <span className="text-[8px] md:text-[9px] font-mono text-dust/30 tracking-[0.2em] mt-1 uppercase">
+                NODE_ID: 0x82F_ARC
               </span>
             </div>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-x-12 pointer-events-auto">
+          <div className="hidden md:flex gap-x-16 pointer-events-auto">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -81,16 +81,16 @@ export const Navbar = () => {
                   key={item.path}
                   href={item.path}
                   className={cn(
-                    "text-xs-technical transition-all duration-500 relative",
-                    isActive ? "text-ash" : "text-dust/40 hover:text-ash"
+                    "text-xs-technical transition-all duration-700 relative group",
+                    isActive ? "text-ice" : "text-dust/40 hover:text-ash"
                   )}
                 >
-                  <span className="opacity-40 mr-2">{item.name.split('_')[0]}</span>
-                  {item.name.split('_')[1]}
+                  <span className="opacity-20 mr-2 group-hover:opacity-40 transition-opacity">{item.name.split('_')[0]}</span>
+                  <span className="group-hover:tracking-widest transition-all duration-700">{item.name.split('_')[1]}</span>
                   {isActive && (
                     <motion.div
                       layoutId="nav-dot"
-                      className="absolute -right-3 top-1/2 -translate-y-1/2 w-[2px] h-[2px] bg-pulse rounded-full"
+                      className="absolute -right-4 top-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-ice shadow-[0_0_8px_rgba(148,163,184,0.8)]"
                     />
                   )}
                 </Link>
@@ -99,21 +99,26 @@ export const Navbar = () => {
           </div>
 
           {/* Technical Telemetry (Desktop) */}
-          <div className="hidden lg:flex items-center gap-10 pointer-events-auto">
+          <div className="hidden lg:flex items-center gap-12 pointer-events-auto">
             <div className="flex flex-col items-end">
-              <span className="text-[8px] font-mono text-dust/20 tracking-[0.3em] uppercase">Epoch_Time</span>
+              <span className="text-[8px] font-mono text-dust/20 tracking-[0.3em] uppercase">SYNC_EPOCH</span>
               <span className="text-[9px] font-mono text-dust/60 tracking-widest">{time}</span>
             </div>
-            <div className="flex items-center gap-4 border-l border-matte/20 pl-8">
+            <div className="flex items-center gap-4 border-l border-white/5 pl-10">
               <div className="flex flex-col items-end">
-                <span className="text-[8px] font-mono text-dust/20 tracking-[0.3em] uppercase">Signal</span>
-                <div className="flex gap-0.5 mt-1 h-3 items-end">
-                  {[...Array(4)].map((_, i) => (
+                <span className="text-[8px] font-mono text-dust/20 tracking-[0.3em] uppercase">SIGNAL_STRENGTH</span>
+                <div className="flex gap-1 mt-1 h-3 items-end">
+                  {[...Array(5)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="w-[2px] bg-pulse/40"
-                      animate={{ height: [2, 8, 4, 12, 6][(i + Math.floor(Math.random() * 5)) % 5] }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-[2px] bg-ice/40"
+                      animate={{ height: [4, 12, 6, 16, 8, 10, 4][i % 7] }}
+                      transition={{ 
+                        duration: 1.2 + (i * 0.2), 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        repeatType: "reverse"
+                      }}
                     />
                   ))}
                 </div>
@@ -124,7 +129,7 @@ export const Navbar = () => {
           {/* Mobile Menu Trigger */}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden pointer-events-auto p-2 text-ash hover:text-pulse transition-colors relative z-[110]"
+            className="md:hidden pointer-events-auto p-2 text-ash hover:text-ice transition-colors relative z-[110]"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -138,27 +143,27 @@ export const Navbar = () => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-            className="fixed inset-0 bg-abyss z-[90] md:hidden p-12 flex flex-col justify-center gap-12"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 bg-abyss z-[90] md:hidden p-12 flex flex-col justify-center gap-16"
           >
-            <div className="absolute top-12 left-12 flex items-center gap-4 text-pulse/20 text-[9px] font-mono tracking-[0.4em]">
-              <Activity className="w-3 h-3 animate-pulse" />
-              <span>ACCESS_DENIED // OVERRIDE_STABLE</span>
+            <div className="absolute top-12 left-12 flex items-center gap-4 text-ice/20 text-[9px] font-mono tracking-[0.4em]">
+              <Activity className="w-4 h-4 animate-pulse" />
+              <span>TERMINAL_ACTIVE // ENCRYPTED_LINK</span>
             </div>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-10">
               {navItems.map((item, i) => (
                 <motion.div
                   key={item.path}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 + 0.3 }}
+                  transition={{ delay: i * 0.1 + 0.4 }}
                 >
                   <Link
                     href={item.path}
                     className={cn(
-                      "text-4xl font-bold tracking-[0.2em] transition-colors uppercase",
-                      pathname === item.path ? "text-pulse" : "text-ash/40"
+                      "text-5xl font-bold tracking-[0.1em] transition-all duration-700 uppercase",
+                      pathname === item.path ? "text-ice" : "text-ash/20"
                     )}
                   >
                     {item.id}
