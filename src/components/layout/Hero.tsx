@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { VynceButton } from '@/components/ui/VynceButton';
 import Image from 'next/image';
+import { GlitchText } from '@/components/ui/GlitchText';
+import { SignalData } from '@/components/ui/SignalData';
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,24 +45,22 @@ export const Hero = () => {
         
         <div className="lg:col-span-8 flex flex-col justify-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-6 mb-8 md:mb-12">
-              <div className="w-12 md:w-20 h-[1px] bg-ice/30" />
-              <span className="text-[10px] md:text-xs-technical text-ice tracking-[0.5em] uppercase">
-                operational_status: stable_drift
-              </span>
+            <div className="flex items-center gap-4 mb-8 md:mb-12">
+              <GlitchText text="SYSTEM_LINK_082F" className="text-[8px] font-mono text-crimson tracking-[0.5em] uppercase opacity-60" />
+              <div className="w-10 h-[0.5px] bg-white/5" />
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-[0.15em] text-ash mb-12 md:mb-16 uppercase leading-[0.9] flex flex-col">
-              <span className="opacity-40">EXPERIMENTAL</span>
+            <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-ash mb-10 md:mb-14 uppercase leading-[0.85] flex flex-col">
+              <span className="text-white/10">EXPERIMENTAL</span>
               <span>SYSTEMS_LAB</span>
             </h1>
             
-            <p className="text-[11px] md:text-sm-archival max-w-xl mb-16 md:mb-24 opacity-50 leading-relaxed font-mono">
-              [SYSTEM_LOG: v0.82f] ARCHIVING REALITY THROUGH DIGITAL ARCHITECTURE.<br />
+            <p className="text-[10px] md:text-[11px] max-w-md mb-12 md:mb-20 opacity-30 leading-relaxed font-mono tracking-wide">
+              [TRANSMISSION_LOG] ARCHIVING FRAGMENTS OF DIGITAL ARCHITECTURE. 
               CONSTRUCTING WORLDS AT THE INTERSECTION OF MOTION, IDENTITY, AND ATMOSPHERIC INTERFACES.
             </p>
 
@@ -71,29 +71,20 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        <div className="lg:col-span-4 flex flex-col justify-end lg:pb-24">
+        <div className="lg:col-span-4 flex flex-col justify-end lg:pb-24 lg:items-end">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 2 }}
-            className="border-l border-white/5 pl-8 md:pl-10 py-6"
+            transition={{ delay: 1, duration: 2 }}
+            className="border-l lg:border-l-0 lg:border-r border-white/5 pl-8 lg:pl-0 lg:pr-8 py-4"
           >
-            <div className="space-y-6 font-mono text-[10px] tracking-[0.3em] text-dust">
-              <div className="flex justify-between items-center">
-                <span className="opacity-30">ARCHIVE_STATE:</span>
-                <span className="text-ice">LIVE_SYNC</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="opacity-30">LATENCY_INDEX:</span>
-                <span className="text-ash">0.0082 MS</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="opacity-30">LOC_COORDS:</span>
-                <span className="text-ash">51.50° N / 0.12° W</span>
-              </div>
-              <div className="w-full h-[1px] bg-white/5 mt-10" />
-              <p className="leading-relaxed opacity-40 italic text-[9px]">
-                "EVERY_INTERFACE_IS_A_WORLD_UNFOLDING"
+            <div className="space-y-6 lg:text-right">
+              <SignalData label="ARCHIVE_NODE" value="8244.00" />
+              <SignalData label="SYNC_LATENCY" value="0.0082" />
+              <SignalData label="LOC_COORDS" value="51.5074, 0.1278" />
+              <div className="w-full h-[0.5px] bg-white/5 mt-10" />
+              <p className="leading-relaxed opacity-20 italic text-[8px] font-mono uppercase tracking-widest">
+                "EVERY_INTERFACE_IS_A_WORLD"
               </p>
             </div>
           </motion.div>

@@ -24,18 +24,18 @@ export const VynceButton = ({
   variant = 'primary',
   className,
 }: VynceButtonProps) => {
-  const baseStyles = "text-xs-technical py-2 transition-all duration-500 relative group";
+  const baseStyles = "text-[9px] font-mono tracking-[0.3em] uppercase py-1.5 transition-all duration-700 relative group flex items-center";
   
   const variants = {
-    primary: "text-ash hover:text-ice",
-    secondary: "text-dust/40 hover:text-ash",
+    primary: "text-ash/60 hover:text-white",
+    secondary: "text-dust/20 hover:text-ash/60",
   };
 
   const content = (
-    <span className="flex items-center gap-6">
-      <span className="relative z-10 group-hover:tracking-[0.5em] transition-all duration-700">{children}</span>
+    <span className="flex items-center gap-5">
+      <span className="relative z-10 group-hover:tracking-[0.6em] transition-all duration-700">{children}</span>
       <motion.div 
-        className="w-12 h-[1px] bg-ice/40 group-hover:w-20 group-hover:bg-ice transition-all duration-700"
+        className="w-8 h-[0.5px] bg-crimson/20 group-hover:w-14 group-hover:bg-crimson transition-all duration-700"
       />
     </span>
   );

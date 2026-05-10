@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Activity } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { GlitchText } from '@/components/ui/GlitchText';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -63,17 +64,18 @@ export const Navbar = () => {
           {/* Logo / System ID */}
           <Link href="/" className="pointer-events-auto group">
             <div className="flex flex-col">
-              <span className="text-ice font-bold tracking-[0.5em] text-xs md:text-sm group-hover:opacity-80 transition-opacity">
+              <span className="text-white font-bold tracking-[0.6em] text-[10px] md:text-[12px] group-hover:text-crimson transition-colors">
                 VYNCE
               </span>
-              <span className="text-[8px] md:text-[9px] font-mono text-dust/30 tracking-[0.2em] mt-1 uppercase">
-                NODE_ID: 0x82F_ARC
-              </span>
+              <GlitchText 
+                text="NODE_0x82F" 
+                className="text-[7px] font-mono text-dust/20 tracking-[0.3em] mt-1 uppercase" 
+              />
             </div>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-x-16 pointer-events-auto">
+          <div className="hidden md:flex gap-x-12 pointer-events-auto">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -81,16 +83,16 @@ export const Navbar = () => {
                   key={item.path}
                   href={item.path}
                   className={cn(
-                    "text-xs-technical transition-all duration-700 relative group",
-                    isActive ? "text-ice" : "text-dust/40 hover:text-ash"
+                    "text-[9px] font-mono tracking-[0.3em] uppercase transition-all duration-700 relative group",
+                    isActive ? "text-ash" : "text-dust/20 hover:text-ash"
                   )}
                 >
-                  <span className="opacity-20 mr-2 group-hover:opacity-40 transition-opacity">{item.name.split('_')[0]}</span>
-                  <span className="group-hover:tracking-widest transition-all duration-700">{item.name.split('_')[1]}</span>
+                  <span className="opacity-10 mr-2 group-hover:opacity-30 transition-opacity">{item.name.split('_')[0]}</span>
+                  <span className="group-hover:tracking-[0.5em] transition-all duration-700">{item.name.split('_')[1]}</span>
                   {isActive && (
                     <motion.div
                       layoutId="nav-dot"
-                      className="absolute -right-4 top-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-ice shadow-[0_0_8px_rgba(148,163,184,0.8)]"
+                      className="absolute -right-3 top-1/2 -translate-y-1/2 w-[2px] h-[2px] bg-crimson shadow-[0_0_6px_rgba(127,29,29,0.8)]"
                     />
                   )}
                 </Link>
@@ -99,22 +101,22 @@ export const Navbar = () => {
           </div>
 
           {/* Technical Telemetry (Desktop) */}
-          <div className="hidden lg:flex items-center gap-12 pointer-events-auto">
+          <div className="hidden lg:flex items-center gap-10 pointer-events-auto">
             <div className="flex flex-col items-end">
-              <span className="text-[8px] font-mono text-dust/20 tracking-[0.3em] uppercase">SYNC_EPOCH</span>
-              <span className="text-[9px] font-mono text-dust/60 tracking-widest">{time}</span>
+              <span className="text-[7px] font-mono text-dust/10 tracking-[0.4em] uppercase">SYNC_EPOCH</span>
+              <span className="text-[8px] font-mono text-dust/40 tracking-widest">{time}</span>
             </div>
-            <div className="flex items-center gap-4 border-l border-white/5 pl-10">
+            <div className="flex items-center gap-3 border-l border-white/5 pl-8">
               <div className="flex flex-col items-end">
-                <span className="text-[8px] font-mono text-dust/20 tracking-[0.3em] uppercase">SIGNAL_STRENGTH</span>
-                <div className="flex gap-1 mt-1 h-3 items-end">
+                <span className="text-[7px] font-mono text-dust/10 tracking-[0.4em] uppercase">SIGNAL</span>
+                <div className="flex gap-0.5 mt-1 h-2 items-end">
                   {[...Array(5)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="w-[2px] bg-ice/40"
-                      animate={{ height: [4, 12, 6, 16, 8, 10, 4][i % 7] }}
+                      className="w-[1.5px] bg-crimson/20"
+                      animate={{ height: [2, 8, 4, 10, 3][(i + Math.floor(Math.random() * 5)) % 5] }}
                       transition={{ 
-                        duration: 1.2 + (i * 0.2), 
+                        duration: 1.5, 
                         repeat: Infinity, 
                         ease: "easeInOut",
                         repeatType: "reverse"
