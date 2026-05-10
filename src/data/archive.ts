@@ -7,6 +7,13 @@ export interface ArchiveEntry {
   status: 'ACTIVE' | 'ARCHIVED' | 'DEVELOPMENT';
   year: string;
   description: string;
+  personality: {
+    identity: string[];
+    atmosphere: 'BREATH' | 'SIGNAL' | 'BLUEPRINT' | 'NETWORK';
+    accentColor: string;
+    systemLabel: string;
+    feeling: string;
+  };
   details: {
     branding: boolean;
     ui: boolean;
@@ -15,9 +22,9 @@ export interface ArchiveEntry {
     atmosphere: boolean;
     identity: boolean;
     experience: boolean;
+    systems?: boolean;
   };
   image?: string;
-  color?: string;
 }
 
 export const archiveEntries: ArchiveEntry[] = [
@@ -30,13 +37,20 @@ export const archiveEntries: ArchiveEntry[] = [
     status: 'ACTIVE',
     year: '2026',
     description: 'A serene digital sanctuary for wellness practitioners, blending breath-work with fluid architectural interfaces.',
+    personality: {
+      identity: ['spiritual technology', 'stillness', 'breath', 'inner mastery', 'digital sanctuary'],
+      atmosphere: 'BREATH',
+      accentColor: '#B7B1A9', // Muted warm
+      systemLabel: 'ATMOSPHERIC_SCAN // LIVE',
+      feeling: 'Entering a sacred digital temple.',
+    },
     details: {
-      branding: true,
-      ui: true,
+      branding: false,
+      ui: false,
       ux: true,
       visuals: true,
       atmosphere: true,
-      identity: true,
+      identity: false,
       experience: true,
     },
   },
@@ -49,14 +63,21 @@ export const archiveEntries: ArchiveEntry[] = [
     status: 'ACTIVE',
     year: '2026',
     description: 'Precision-engineered interface for high-end architectural visualization and construction management.',
+    personality: {
+      identity: ['luxury architecture', 'material authority', 'precision', 'weight', 'legacy craftsmanship'],
+      atmosphere: 'BLUEPRINT',
+      accentColor: '#D4AF37', // Muted gold
+      systemLabel: 'MATERIAL_SCAN // LIVE',
+      feeling: 'Opening classified files from an elite architectural intelligence division.',
+    },
     details: {
       branding: true,
-      ui: true,
+      ui: false,
       ux: true,
       visuals: true,
-      atmosphere: true,
+      atmosphere: false,
       identity: true,
-      experience: true,
+      experience: false,
     },
   },
   {
@@ -68,14 +89,22 @@ export const archiveEntries: ArchiveEntry[] = [
     status: 'ACTIVE',
     year: '2026',
     description: 'A dynamic system for event discovery and social networking, built with high-velocity interactions.',
+    personality: {
+      identity: ['urban infrastructure', 'social energy', 'live events', 'trust systems', 'nightlife intelligence'],
+      atmosphere: 'SIGNAL',
+      accentColor: '#7F1D1D', // Deep crimson
+      systemLabel: 'SIGNAL_GRID // LIVE',
+      feeling: 'A live underground social network currently transmitting activity.',
+    },
     details: {
-      branding: true,
-      ui: true,
+      branding: false,
+      ui: false,
       ux: true,
-      visuals: true,
-      atmosphere: true,
+      visuals: false,
+      atmosphere: false,
       identity: true,
       experience: true,
+      systems: true,
     },
   },
   {
@@ -87,14 +116,22 @@ export const archiveEntries: ArchiveEntry[] = [
     status: 'ACTIVE',
     year: '2026',
     description: 'Inclusive digital architecture designed to bridge the gap in disability support and accessibility.',
+    personality: {
+      identity: ['human infrastructure', 'accessibility', 'inclusion systems', 'social architecture', 'verified networks'],
+      atmosphere: 'NETWORK',
+      accentColor: '#D97706', // Warm amber
+      systemLabel: 'NETWORK_SCAN // LIVE',
+      feeling: 'A living human network quietly rebuilding society underneath the surface.',
+    },
     details: {
-      branding: true,
-      ui: true,
+      branding: false,
+      ui: false,
       ux: true,
-      visuals: true,
+      visuals: false,
       atmosphere: true,
-      identity: true,
+      identity: false,
       experience: true,
+      systems: true,
     },
   },
 ];
