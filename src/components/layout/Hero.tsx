@@ -42,8 +42,8 @@ export const Hero = () => {
           
           <div className="space-y-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase leading-[0.9] text-white max-w-4xl">
-              ARCHITECTING_THE_VOID.<br/>
-              <span className="text-white/20 italic">RECLAIMING_THE_SIGNAL</span>
+              CRAFT_IN_THE_AGE_OF<br/>
+              <span className="text-white/20 italic">AI.</span>
             </h1>
             <p className="terminal-text-sm text-white/40 max-w-2xl leading-relaxed uppercase">
               [LOG_START] VYNCE IS A RESEARCH UNIT DEDICATED TO THE STUDY OF ATMOSPHERIC INTERFACES AND REACTIVE MOTION. 
