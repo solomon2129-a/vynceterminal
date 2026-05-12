@@ -19,8 +19,8 @@ export function AppContent({ children }: { children: React.ReactNode }) {
         
         {/* Terminal Footer Info */}
         <footer className="mt-auto pt-12 border-t border-terminal-border flex justify-between items-center terminal-text-xs text-terminal-dim px-4 md:px-8 pb-8">
-          <span>SYS_READY // VYNCE_V1.0.4</span>
-          <span>[SESSION_ID: {sessionId}]</span>
+          <span>sys_ready // vynce_v1.0.4</span>
+          <span>[session_id: {sessionId}]</span>
         </footer>
       </div>
     </>
