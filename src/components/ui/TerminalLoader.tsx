@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export const TerminalLoader = ({ onComplete }: { onClose?: () => void; onComplete: () => void }) => {
   const [logs, setLogs] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   const startupSequence = [
     '> INITIALIZING_BOOT_SEQUENCE...',
@@ -18,6 +19,7 @@ export const TerminalLoader = ({ onComplete }: { onClose?: () => void; onComplet
   ];
 
   useEffect(() => {
+    setMounted(true);
     let currentLog = 0;
     const interval = setInterval(() => {
       if (currentLog < startupSequence.length) {
@@ -31,7 +33,7 @@ export const TerminalLoader = ({ onComplete }: { onClose?: () => void; onComplet
     }, 400);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [onComplete]);
 
   return (
     <div className="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center p-6 md:p-12 font-mono">
@@ -45,7 +47,7 @@ export const TerminalLoader = ({ onComplete }: { onClose?: () => void; onComplet
                 animate={{ opacity: 1, x: 0 }}
                 className="text-white text-sm md:text-base flex items-center gap-4"
               >
-                <span className="text-white/20">[{new Date().toLocaleTimeString()}]</span>
+                <span className="text-white/20">[{mounted ? new Date().toLocaleTimeString() : '--:--:--'}]</span>
                 <span>{log}</span>
               </motion.div>
             ))}
@@ -61,8 +63,9 @@ export const TerminalLoader = ({ onComplete }: { onClose?: () => void; onComplet
           />
         </div>
 
-        <div className="flex justify-between items-center text-[10px] text-white/20 uppercase tracking-widest">
-          <span>vynce_system_startup</span>
+        <div className="flex justify-between items-center text-[10px] text-white/20 tracking-widest">
+          <span className="lowercase font-bold">vynce</span>
+          <span className="uppercase text-[9px] opacity-40">system_startup</span>
           <span>{Math.round(progress)}%</span>
         </div>
       </div>
