@@ -55,10 +55,13 @@ export default function BTSPage() {
               THE_PROCESS
             </h1>
             
-            <p className="terminal-text-sm text-white/40 leading-relaxed uppercase border-l border-terminal-border pl-6 max-w-lg">
-              UNFILTERED_FRAGMENTS_FROM_THE_LAB. THIS_IS_THE_RESIDUE_OF_THE_VYNCE_SYSTEM.
-              WE_DO_NOT_CLEAN_UP_THE_SIGNAL.
-            </p>
+            <div className="terminal-text-sm text-white/40 leading-relaxed uppercase border-l border-terminal-border pl-6 max-w-lg whitespace-pre-wrap font-mono">
+              {`if (failure) {
+  retry();
+} else {
+  succeed();
+}`}
+            </div>
           </motion.div>
         </header>
 
