@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CinematicOverlays } from "@/components/layout/CinematicOverlays";
-import { Navbar } from "@/components/layout/Navbar";
+import { SessionProvider } from "@/context/SessionContext";
+import { AppContent } from "@/components/layout/AppContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,12 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VYNCE // ARCHIVAL_SIGNAL",
-  description: "Discovered research terminal. Experimental motion, interface studies, and digital fragments.",
+  title: "vynce // terminal",
+  description: "Internal research terminal. Unstable interface fragments and digital architecture.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
@@ -35,12 +36,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-abyss text-ash selection:bg-ice selection:text-abyss">
+      <body className="min-h-full flex flex-col bg-black text-white selection:bg-white selection:text-black font-mono">
         <CinematicOverlays />
-        <Navbar />
-        <main className="relative z-10 flex-grow">
-          {children}
-        </main>
+        <SessionProvider>
+          <AppContent>{children}</AppContent>
+        </SessionProvider>
       </body>
     </html>
   );

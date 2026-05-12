@@ -1,153 +1,108 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, ShieldCheck, Terminal, Cpu, Share2 } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-32 md:py-48 overflow-hidden relative">
+    <div className="min-h-screen flex items-center px-6 md:px-12 lg:px-24 py-32 bg-black relative overflow-hidden">
       
-      {/* Memorable Interactive Element: Scanner Sweep */}
-      <motion.div 
-        className="fixed inset-0 pointer-events-none z-[5] opacity-[0.03]"
-        initial={{ translateY: '-100%' }}
-        animate={{ translateY: '100%' }}
-        transition={{ 
-          duration: 10, 
-          repeat: Infinity, 
-          ease: "linear" 
-        }}
-        style={{
-          background: "linear-gradient(to bottom, transparent, #B7B1A9, transparent)",
-          height: '2px',
-          width: '100%'
-        }}
-      />
-
-      <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start relative z-10">
+      <div className="max-w-[1800px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-32 items-end relative z-10">
         
-        {/* Level 1 & 2: Dominant Header & Supporting Description */}
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
-          className="lg:col-span-7"
-        >
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-xs-technical text-ice">HANDSHAKE_INITIATED // TRANSMISSION_OPEN</span>
-            <div className="w-12 h-[1px] bg-white/10" />
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.2em] text-ash mb-12 uppercase leading-[0.9]">
-            ESTABLISH<br/>
-            CONNECTION
-          </h1>
-          
-          <p className="text-sm md:text-lg text-ash/80 max-w-xl mb-16 leading-relaxed font-light italic">
-            VYNCE operates at the intersection of motion logic and reactive systems. 
-            We build interactive environments, neural interfaces, and procedural motion studies. 
-            The signal is active. State your intent below.
-          </p>
-
-          {/* Level 3: Tiny Metadata */}
-          <div className="flex flex-wrap gap-8 opacity-40">
-            <div className="flex items-center gap-3 text-[9px] font-mono tracking-[0.3em] uppercase">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>ENCRYPTION_ACTIVE</span>
-            </div>
-            <div className="flex items-center gap-3 text-[9px] font-mono tracking-[0.3em] uppercase">
-              <Terminal className="w-3.5 h-3.5" />
-              <span>LOG_ID: 0x82F_CONN</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Level 2 & 3: Supporting & Metadata (Interaction Modules) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 1.2 }}
-          className="lg:col-span-5 space-y-4"
+          transition={{ duration: 1 }}
+          className="lg:col-span-8"
         >
-          <div className="mb-8 hidden lg:block">
-             <span className="text-[10px] font-mono text-dust/30 tracking-[0.4em] uppercase">Channel_Selection</span>
+          <div className="flex items-center gap-4 mb-12">
+            <span className="terminal-text-xs text-white/40">{'>'} establish_handshake --secure /vynce/contact</span>
           </div>
 
-          <TransmissionLink 
-            icon={<Mail className="w-4 h-4" />} 
-            label="PROTO_01_EMAIL" 
-            value="team.vynce@gmail.com" 
-            href="mailto:team.vynce@gmail.com"
-            metadata="LATENCY: 12ms // BUFFER: STABLE"
-          />
-          
-          <TransmissionLink 
-            icon={<Phone className="w-4 h-4" />} 
-            label="PROTO_02_TEL" 
-            value="+91 6382670175" 
-            href="tel:+916382670175"
-            metadata="VOICE_DECRYPTION: ENABLED"
-          />
-          
-          <div className="pt-12 md:pt-20">
-            <div className="glass-matte p-10 border-white/5 flex justify-between items-end group transition-all duration-700 hover:border-ice/20">
-              <div className="space-y-6">
-                <span className="text-[9px] font-mono text-dust/20 tracking-[0.4em] uppercase block">Operations_Node</span>
-                <div>
-                   <p className="text-xs-technical text-ash mb-1">REMOTE_ACCESS_ONLY</p>
-                   <p className="text-[9px] font-mono text-dust/40 tracking-[0.2em]">COORD: 51.5074° N, 0.1278° W</p>
-                </div>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white uppercase mb-12">
+            ESTABLISH_SIGNAL
+          </h1>
+
+          <p className="terminal-text-sm text-white/40 leading-relaxed uppercase border-l border-terminal-border pl-6 max-w-2xl mb-16">
+            [MESSAGE] VYNCE OPERATES AT THE INTERSECTION OF MOTION LOGIC AND REACTIVE SYSTEMS. 
+            THE SIGNAL IS ACTIVE. STATE YOUR INTENT. WE ARE WATCHING THE BUFFER.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <TransmissionLink 
+              label="PROTO_01_EMAIL" 
+              value="team.vynce@gmail.com" 
+              href="mailto:team.vynce@gmail.com"
+              metadata="LATENCY: 12ms // BUFFER: STABLE"
+            />
+            <TransmissionLink 
+              label="PROTO_02_TEL" 
+              value="+91 6382670175" 
+              href="tel:+916382670175"
+              metadata="VOICE_DECRYPTION: ENABLED"
+            />
+          </div>
+        </motion.div>
+
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          className="lg:col-span-4"
+        >
+          <div className="border border-white/10 p-12 space-y-12">
+            <div>
+              <span className="text-[10px] font-mono text-white/20 tracking-[0.5em] uppercase block mb-4">NODE_LOCATION</span>
+              <p className="text-sm font-mono text-white uppercase tracking-widest">REMOTE_ACCESS_ONLY</p>
+              <p className="text-[9px] font-mono text-white/20 tracking-[0.2em] mt-2">12.9716° N, 77.5946° E</p>
+            </div>
+            
+            <div className="pt-12 border-t border-white/10">
+              <span className="text-[10px] font-mono text-white/20 tracking-[0.5em] uppercase block mb-4">SYSTEM_STATUS</span>
+              <div className="flex items-center gap-4">
+                <div className="w-2 h-2 bg-white animate-pulse" />
+                <span className="text-[10px] font-mono text-white tracking-widest uppercase">ENCRYPTION_ACTIVE</span>
               </div>
-              <Cpu className="w-6 h-6 text-dust/10 group-hover:text-ice transition-colors duration-1000 animate-pulse" />
             </div>
           </div>
         </motion.div>
 
       </div>
 
-      {/* Background Atmosphere Decoration */}
-      <div className="absolute right-[-5%] top-[20%] opacity-5 pointer-events-none select-none hidden xl:block">
-        <span className="text-[200px] font-bold text-ash tracking-[-0.05em] leading-none">
-          82F
+      {/* Background Atmosphere */}
+      <div className="absolute right-0 bottom-0 p-12 opacity-[0.03] pointer-events-none hidden xl:block">
+        <span className="text-[25vw] font-bold text-white tracking-tighter uppercase leading-none">
+          CONN
         </span>
       </div>
     </div>
   );
 }
 
-function TransmissionLink({ icon, label, value, href, metadata }: any) {
+function TransmissionLink({ label, value, href, metadata }: any) {
   return (
     <a 
       href={href}
-      className="group flex flex-col p-8 glass-matte border-white/5 hover:border-ice/20 transition-all duration-700 relative overflow-hidden"
+      className="group flex flex-col p-12 border border-white/10 hover:bg-white hover:text-black transition-colors duration-100 relative overflow-hidden"
     >
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-6">
-          <div className="text-dust/20 group-hover:text-ice transition-colors duration-500">
-            {icon}
-          </div>
-          <span className="text-[9px] font-mono uppercase tracking-[0.4em] text-dust/30 group-hover:text-ash transition-colors">
-            {label}
-          </span>
-        </div>
-        <Share2 className="w-3.5 h-3.5 text-dust/10 group-hover:text-ash transition-colors" />
+      <div className="flex items-center justify-between mb-12">
+        <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100">
+          {label}
+        </span>
+        <div className="w-1.5 h-1.5 bg-current animate-pulse" />
       </div>
 
-      <div className="mb-6">
-        <p className="text-base md:text-xl tracking-[0.1em] text-ash uppercase break-all font-medium">
+      <div className="mb-12">
+        <p className="text-xl font-bold tracking-tighter uppercase group-hover:italic transition-all">
           {value}
         </p>
       </div>
 
-      <div className="flex justify-between items-center pt-4 border-t border-white/5">
-        <span className="text-[8px] font-mono text-dust/20 tracking-widest uppercase group-hover:text-dust/40 transition-colors">
+      <div className="flex justify-between items-center pt-6 border-t border-current opacity-10 group-hover:opacity-100">
+        <span className="text-[8px] font-mono tracking-widest uppercase">
           {metadata}
         </span>
-        <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-ice transition-colors" />
       </div>
-
-      {/* Decorative vertical pulse line */}
-      <div className="absolute top-0 right-0 w-[1px] h-0 bg-ice group-hover:h-full transition-all duration-1000" />
     </a>
   );
 }

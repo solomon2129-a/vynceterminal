@@ -11,14 +11,14 @@ interface GlitchTextProps {
   speed?: number;
 }
 
-const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>[]/\\_{}*&^%$#@!';
 
 export const GlitchText = ({ 
   text, 
   className, 
   glitchProbability = 0.05, 
-  interval = 3000,
-  speed = 50 
+  interval = 4000,
+  speed = 40 
 }: GlitchTextProps) => {
   const [displayText, setDisplayText] = useState(text);
   const [isGlitching, setIsGlitching] = useState(false);
@@ -37,7 +37,7 @@ export const GlitchText = ({
   const startGlitch = () => {
     setIsGlitching(true);
     let iterations = 0;
-    const maxIterations = 10;
+    const maxIterations = originalText.current.length;
     
     const glitchStep = setInterval(() => {
       setDisplayText(prev => 
@@ -45,7 +45,7 @@ export const GlitchText = ({
           .split('')
           .map((char, index) => {
             if (index < iterations) return originalText.current[index];
-            if (Math.random() > 0.8) return characters[Math.floor(Math.random() * characters.length)];
+            if (Math.random() > 0.7) return characters[Math.floor(Math.random() * characters.length)];
             return char;
           })
           .join('')
@@ -64,10 +64,10 @@ export const GlitchText = ({
     <motion.span 
       className={className}
       animate={isGlitching ? { 
-        x: [0, -1, 1, -1, 0],
-        opacity: [1, 0.8, 1, 0.9, 1],
+        x: [0, -2, 2, -1, 0],
+        opacity: [1, 0.5, 1, 0.7, 1],
       } : {}}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.1, ease: "linear" }}
     >
       {displayText}
     </motion.span>

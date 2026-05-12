@@ -1,87 +1,91 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Activity, Zap, Cpu, Terminal } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 
 export default function LabPage() {
   return (
-    <div className="min-h-screen pt-32 md:pt-48 pb-24 md:pb-40 px-6 md:px-12 lg:px-24">
-      <div className="max-w-[1400px] mx-auto">
+    <div className="min-h-screen pt-32 pb-32 px-6 md:px-12 lg:px-24 bg-black relative overflow-hidden">
+      <div className="max-w-[1800px] mx-auto">
         
-        <header className="mb-16 md:mb-32 max-w-2xl">
+        <header className="mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <div className="flex items-center gap-4 mb-4 md:mb-6">
-              <span className="text-[9px] md:text-xs-technical text-ice">PHASE_01 // INSTABILITY_TESTS</span>
-              <div className="w-8 md:w-12 h-[1px] bg-white/10" />
+            <div className="flex items-center gap-4 mb-8">
+              <span className="terminal-text-xs text-white/40">{'>'} run --mode experimental /lab</span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-[0.2em] text-ash mb-6 md:mb-8 uppercase">THE_LAB</h1>
-            <p className="text-[11px] md:text-sm-archival max-w-lg italic opacity-50">
-              a controlled environment for visual breakdown and system reconstruction. 
-              observing the friction between machine logic and human signal drift.
-            </p>
+            
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white uppercase mb-12">
+              THE_LAB
+            </h1>
+            
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+              <div className="md:col-span-6 lg:col-span-5">
+                <p className="terminal-text-sm text-white/40 leading-relaxed uppercase border-l border-terminal-border pl-6">
+                  [RESEARCH] A CONTROLLED ENVIRONMENT FOR VISUAL BREAKDOWN AND SYSTEM RECONSTRUCTION. 
+                  OBSERVING THE FRICTION BETWEEN MACHINE LOGIC AND HUMAN SIGNAL DRIFT.
+                </p>
+              </div>
+            </div>
           </motion.div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-t border-white/10">
           
-          <div className="lg:col-span-8 flex flex-col gap-8 md:gap-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              <LabModule 
-                id="0x01" 
-                title="MOTION_ENTROPY" 
-                status="STABLE" 
-                icon={<Zap className="w-3 h-3" />}
-                color="ice"
-              />
-              <LabModule 
-                id="0x02" 
-                title="SIGNAL_BUFFER" 
-                status="RECALIBRATING" 
-                icon={<Activity className="w-3 h-3" />}
-                color="ghost"
-              />
-            </div>
-            
-            <div className="md:w-2/3 lg:ml-auto">
-              <LabModule 
-                id="0x03" 
-                title="INTERFACE_DECAY" 
-                status="ANALYZING" 
-                icon={<Cpu className="w-3 h-3" />}
-                color="ash"
-              />
-            </div>
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2">
+            <LabModule 
+              id="0x01" 
+              title="MOTION_ENTROPY" 
+              status="STABLE" 
+              borderRight
+            />
+            <LabModule 
+              id="0x02" 
+              title="SIGNAL_BUFFER" 
+              status="RECALIBRATING" 
+            />
+            <LabModule 
+              id="0x03" 
+              title="INTERFACE_DECAY" 
+              status="ANALYZING" 
+              borderTop
+              borderRight
+            />
+            <LabModule 
+              id="0x04" 
+              title="NEURAL_DRIFT" 
+              status="UNSTABLE" 
+              borderTop
+            />
           </div>
 
-          <aside className="lg:col-span-4 mt-8 lg:mt-32">
-            <div className="border-l border-matte pl-6 md:pl-12 py-4 md:py-8">
-              <div className="flex justify-between items-center mb-8 md:mb-12">
-                <span className="text-[9px] md:text-xs-technical text-dust/40">SYSTEM_FEED</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-ice animate-pulse" />
-              </div>
-              
-              <div className="space-y-4 md:space-y-6 font-mono text-[8px] md:text-[9px] tracking-[0.2em] text-dust/60">
-                <LogLine time="12:00:01" msg="INIT_CORE" />
-                <LogLine time="12:00:04" msg="MAPPING_ARRAYS" />
-                <LogLine time="12:00:09" msg="SIGNAL_LOST" />
-                <LogLine time="12:00:10" msg="RECOVERY_PROCEDURE" />
-                <LogLine time="12:00:15" msg="STABLE_STATE" />
-              </div>
+          <aside className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-white/10 p-12">
+            <div className="flex justify-between items-center mb-16">
+              <span className="text-[10px] font-mono text-white/20 tracking-[0.5em] uppercase">SYSTEM_FEED</span>
+              <div className="w-2 h-2 bg-white animate-pulse" />
+            </div>
+            
+            <div className="space-y-6 font-mono text-[10px] tracking-[0.2em] text-white/40">
+              <LogLine time="12:00:01" msg="INIT_CORE" />
+              <LogLine time="12:00:04" msg="MAPPING_ARRAYS" />
+              <LogLine time="12:00:09" msg="SIGNAL_LOST" />
+              <LogLine time="12:00:10" msg="RECOVERY_PROCEDURE" />
+              <LogLine time="12:00:15" msg="STABLE_STATE" />
+              <LogLine time="12:00:22" msg="DRIVE_SY_ACTIVE" />
+            </div>
 
-              <div className="mt-12 md:mt-20 pt-8 md:pt-12 border-t border-matte">
-                <div className="grid grid-cols-2 gap-4 md:gap-8 text-[8px] md:text-[9px] font-mono text-dust/30">
-                  <div className="space-y-1 md:space-y-2">
-                    <p>CPU_LOAD: 12%</p>
-                    <p>MEM_USED: 4.1GB</p>
-                  </div>
-                  <div className="space-y-1 md:space-y-2">
-                    <p>SIGNAL: -42db</p>
-                    <p>TEMP: 32°C</p>
-                  </div>
+            <div className="mt-32 pt-12 border-t border-white/10">
+              <div className="grid grid-cols-2 gap-8 text-[9px] font-mono text-white/20 uppercase tracking-widest">
+                <div className="space-y-3">
+                  <p>CPU_LOAD: 12%</p>
+                  <p>MEM_USED: 4.1GB</p>
+                </div>
+                <div className="space-y-3 text-right">
+                  <p>SIGNAL: -42db</p>
+                  <p>TEMP: 32°C</p>
                 </div>
               </div>
             </div>
@@ -93,38 +97,45 @@ export default function LabPage() {
   );
 }
 
-function LabModule({ id, title, status, icon, color }: any) {
+interface LabModuleProps {
+  id: string;
+  title: string;
+  status: string;
+  borderRight?: boolean;
+  borderTop?: boolean;
+}
+
+function LabModule({ id, title, status, borderRight, borderTop }: LabModuleProps) {
   return (
     <motion.div 
-      whileHover={{ y: -2 }}
-      className="group relative glass-matte p-6 md:p-10 border-white/5 hover:border-ice/20 transition-all duration-700 cursor-crosshair"
+      className={`group relative p-12 md:p-24 border-white/10 transition-colors duration-100 cursor-crosshair hover:bg-white hover:text-black ${borderRight ? 'md:border-r' : ''} ${borderTop ? 'border-t' : ''} border-b md:border-b-0`}
     >
-      <div className="flex justify-between items-start mb-12 md:mb-20">
-        <span className="text-[9px] md:text-[10px] font-mono text-dust/40 tracking-tighter">{id}</span>
-        <div className={`p-1.5 md:p-2 rounded-full border border-current opacity-20 group-hover:opacity-100 transition-all duration-500 ${color === 'ice' ? 'text-ice' : 'text-ghost'}`}>
-          {icon}
-        </div>
+      <div className="flex justify-between items-start mb-24">
+        <span className="text-[10px] font-mono opacity-40 group-hover:opacity-100">{id}</span>
+        <Terminal size={16} className="opacity-20 group-hover:opacity-100" />
       </div>
       
-      <h3 className="text-xl md:text-2xl font-bold tracking-[0.2em] text-ash mb-3 md:mb-4 uppercase">{title}</h3>
-      <div className="flex items-center gap-3 md:gap-4">
-        <div className={`w-1 h-1 rounded-full animate-pulse bg-current ${color === 'ice' ? 'text-ice' : 'text-ghost'}`} />
-        <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] text-dust/60">{status}</span>
-      </div>
-
-      {/* Subtle corner detail */}
-      <div className="absolute top-0 right-0 w-8 h-8 opacity-10 group-hover:opacity-40 transition-opacity">
-        <div className="w-full h-full border-t border-r border-ash" />
+      <h3 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4 uppercase leading-none group-hover:italic transition-all">
+        {title}
+      </h3>
+      <div className="flex items-center gap-4">
+        <div className="w-1.5 h-1.5 bg-current animate-pulse" />
+        <span className="text-[10px] uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100">{status}</span>
       </div>
     </motion.div>
   );
 }
 
-function LogLine({ time, msg }: any) {
+interface LogLineProps {
+  time: string;
+  msg: string;
+}
+
+function LogLine({ time, msg }: LogLineProps) {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 group">
       <span className="opacity-40">[{time}]</span>
-      <span className="group-hover:text-ash transition-colors">{msg}</span>
+      <span className="group-hover:text-white transition-colors">{msg}</span>
     </div>
   );
 }

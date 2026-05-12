@@ -13,28 +13,30 @@ const DataLeak = () => {
   const [fragments, setFragments] = useState<{ x: number, y: number, content: string, opacity: number, duration: number }[]>([]);
 
   const generateValue = () => {
-    return Math.random() > 0.6 
-      ? Math.floor(Math.random() * 1000000).toString(16).toUpperCase()
-      : Math.random() > 0.3 
-        ? Math.floor(Math.random() * 100000).toString() 
-        : Math.random().toString(2).substring(2, 10);
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>[]/\\_{}*&^%$#@!";
+    if (Math.random() > 0.8) {
+      return Array(8).fill(0).map(() => chars[Math.floor(Math.random() * chars.length)]).join("");
+    }
+    return Math.random() > 0.5 
+      ? "0x" + Math.floor(Math.random() * 0xFFFFFF).toString(16).toUpperCase()
+      : "NULL_" + Math.floor(Math.random() * 9999);
   };
 
   useEffect(() => {
-    const initialFragments = [...Array(40)].map(() => ({
+    const initialFragments = [...Array(30)].map(() => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
       content: generateValue(),
-      opacity: Math.random() * 0.08 + 0.04,
-      duration: Math.random() * 5 + 3
+      opacity: Math.random() * 0.15 + 0.05,
+      duration: Math.random() * 2 + 1
     }));
     setFragments(initialFragments);
 
     const interval = setInterval(() => {
       setFragments(prev => prev.map(f => 
-        Math.random() > 0.9 ? { ...f, content: generateValue() } : f
+        Math.random() > 0.8 ? { ...f, content: generateValue(), x: Math.random() * 100, y: Math.random() * 100 } : f
       ));
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -45,13 +47,14 @@ const DataLeak = () => {
         <motion.div
           key={i}
           initial={{ opacity: 0 }}
-          animate={{ opacity: [f.opacity, f.opacity * 0.4, f.opacity] }}
+          animate={{ opacity: [0, f.opacity, 0] }}
           transition={{
             duration: f.duration,
             repeat: Infinity,
-            ease: "easeInOut",
+            repeatDelay: Math.random() * 5,
+            ease: "linear",
           }}
-          className="absolute font-mono text-[9px] md:text-[10px] tracking-tighter text-ash/30"
+          className="absolute font-mono text-[8px] md:text-[9px] tracking-[0.2em] text-white/40"
           style={{
             left: `${f.x}%`,
             top: `${f.y}%`,
@@ -65,29 +68,16 @@ const DataLeak = () => {
 };
 
 const ParticleField = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [particles, setParticles] = useState<{ x: string, y: string, opacity: number, duration: number, targetX: string, targetY: string }[]>([]);
+  const [particles, setParticles] = useState<{ x: string, y: string, opacity: number, duration: number }[]>([]);
 
   useEffect(() => {
-    const initialParticles = [...Array(15)].map(() => ({
+    const initialParticles = [...Array(20)].map(() => ({
       x: Math.random() * 100 + '%',
       y: Math.random() * 100 + '%',
-      opacity: Math.random() * 0.3,
-      duration: Math.random() * 40 + 40,
-      targetX: Math.random() * 100 + '%',
-      targetY: Math.random() * 100 + '%'
+      opacity: Math.random() * 0.2,
+      duration: Math.random() * 0.5 + 0.1,
     }));
     setParticles(initialParticles);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) - 0.5,
-        y: (e.clientY / window.innerHeight) - 0.5,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
@@ -95,25 +85,17 @@ const ParticleField = () => {
       {particles.map((p, i) => (
         <motion.div
           key={i}
-          className="absolute w-[1px] h-[1px] bg-white/10"
-          initial={{ 
-            x: p.x, 
-            y: p.y,
-            opacity: p.opacity 
-          }}
+          className="absolute w-[2px] h-[2px] bg-white/20"
+          initial={{ x: p.x, y: p.y, opacity: 0 }}
           animate={{
-            x: [p.x, p.targetX, p.x],
-            y: [p.y, p.targetY, p.y],
-            opacity: [p.opacity, p.opacity * 2, p.opacity],
+            opacity: [0, p.opacity, 0],
+            scale: [1, 1.5, 1],
           }}
           transition={{
             duration: p.duration,
             repeat: Infinity,
+            repeatDelay: Math.random() * 10,
             ease: "linear"
-          }}
-          style={{
-            translateX: mousePosition.x * (i + 1) * 2,
-            translateY: mousePosition.y * (i + 1) * 2,
           }}
         />
       ))}
@@ -124,24 +106,34 @@ const ParticleField = () => {
 export const CinematicOverlays = () => {
   const mounted = useHasMounted();
 
-  if (!mounted) return <div className="grain-overlay" aria-hidden="true" />;
+  if (!mounted) return null;
 
   return (
     <>
-      <div className="grain-overlay" aria-hidden="true" />
+      <div className="noise-overlay" aria-hidden="true" />
+      <div className="scanline" aria-hidden="true" />
+      <div className="crt-vignette" aria-hidden="true" />
+      
       <DataLeak />
       <ParticleField />
       
-      {/* Subtle Scanline */}
+      {/* Horizontal Line Flicker */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-[2] opacity-[0.01]"
-        style={{
-          background: "repeating-linear-gradient(0deg, transparent, transparent 2px, #E5E7EB 3px)"
+        className="fixed inset-0 pointer-events-none z-[2] bg-white/5 h-[1px]"
+        animate={{
+          top: ["0%", "100%"],
+          opacity: [0, 0.2, 0]
+        }}
+        transition={{
+          duration: 0.2,
+          repeat: Infinity,
+          repeatDelay: Math.random() * 10,
+          ease: "linear"
         }}
       />
 
-      {/* Atmospheric Vignette */}
-      <div className="fixed inset-0 pointer-events-none z-[3] bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(5,5,5,0.6)_100%)]" />
+      {/* Screen Flicker Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-[102] animate-flicker bg-white/[0.01]" />
     </>
   );
 };

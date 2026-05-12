@@ -10,7 +10,7 @@ interface SignalDataProps {
   mutationSpeed?: number;
 }
 
-export const SignalData = ({ label, value, className, mutationSpeed = 2000 }: SignalDataProps) => {
+export const SignalData = ({ label, value, className, mutationSpeed = 1000 }: SignalDataProps) => {
   const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
@@ -18,17 +18,15 @@ export const SignalData = ({ label, value, className, mutationSpeed = 2000 }: Si
 
     const interval = setInterval(() => {
       if (value.includes('°')) {
-        // Handle coordinates
         const [lat, lon] = value.split(', ');
         const mutate = (coord: string) => {
           const num = parseFloat(coord);
-          return (num + (Math.random() - 0.5) * 0.01).toFixed(4) + coord.slice(-2);
+          return (num + (Math.random() - 0.5) * 0.005).toFixed(4);
         };
         setDisplayValue(`${mutate(lat)}, ${mutate(lon)}`);
       } else if (!isNaN(parseFloat(value))) {
-        // Handle numbers
         const num = parseFloat(value);
-        setDisplayValue((num + (Math.random() - 0.5) * 0.05).toFixed(4));
+        setDisplayValue((num + (Math.random() - 0.5) * 0.01).toFixed(4));
       }
     }, mutationSpeed);
 
@@ -36,12 +34,12 @@ export const SignalData = ({ label, value, className, mutationSpeed = 2000 }: Si
   }, [value, mutationSpeed]);
 
   return (
-    <div className={`flex flex-col gap-1 ${className}`}>
-      <span className="text-[7px] font-mono text-dust/20 uppercase tracking-[0.3em]">{label}</span>
+    <div className={`flex flex-col gap-2 ${className}`}>
+      <span className="text-[9px] font-mono text-white/20 uppercase tracking-[0.5em]">{label}</span>
       <motion.span 
-        className="text-[9px] font-mono text-ash/60 tracking-widest"
-        animate={{ opacity: [0.6, 0.4, 0.6] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="text-[11px] font-mono text-white tracking-widest uppercase"
+        animate={{ opacity: [1, 0.4, 1] }}
+        transition={{ duration: 0.2, repeat: Infinity, repeatDelay: 5, ease: "linear" }}
       >
         {displayValue}
       </motion.span>
