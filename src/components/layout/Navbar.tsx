@@ -67,7 +67,7 @@ export const Navbar = () => {
             </div>
           </Link>
           
-          <div className="hidden md:flex gap-x-8 lg:gap-x-12 pointer-events-auto">
+          <div className="hidden md:flex flex-row items-center justify-center gap-8 lg:gap-12 pointer-events-auto">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -75,7 +75,7 @@ export const Navbar = () => {
                   key={item.path}
                   href={item.path}
                   className={cn(
-                    "terminal-text-sm uppercase transition-colors relative group py-1",
+                    "terminal-text-sm uppercase transition-colors relative group py-1 flex-shrink-0",
                     isActive ? "text-white" : "text-white/40 hover:text-white"
                   )}
                 >
