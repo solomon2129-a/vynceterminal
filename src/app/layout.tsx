@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "vynce // terminal",
   description: "Internal research terminal. Unstable interface fragments and digital architecture.",
+  verification: {
+    other: {
+      "p:domain_verify": "8519528fec295ebc234eb6331b586aa3",
+    },
+  },
 };
 
 export const viewport: Viewport = {
